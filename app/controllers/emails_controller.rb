@@ -1,16 +1,28 @@
 class EmailsController < ApplicationController
   before_action :set_email, only: [:show, :edit, :update, :destroy]
 
-  def send
-    mail = Mail.new do
-      from    'nealio@test.email.net'
-      to      'nealiof1000@gmail.com'
-      subject 'This is a test email'
-      body    'Testing testing 1-2-3...'
-    end
+  # def send
+  #   mail = Mail.new do
+  #     from    'nealio@test.email.net'
+  #     to      'nealiof1000@gmail.com'
+  #     subject 'This is a test email'
+  #     body    'Testing testing 1-2-3...'
+  #   end
+  #
+  #   mail.delivery_method :sendmail
+  #   mail.deliver!
+  # end
 
-    mail.delivery_method :sendmail
-    mail.deliver!
+  def sendEmail
+      mail = Mail.new do
+        from    'nealio@test.email.net'
+        to      'nealiof1000@gmail.com'
+        subject 'This is a test email'
+        body    'Testing testing 1-2-3...'
+      end
+
+      mail.delivery_method :sendmail
+      mail.deliver!
   end
 
 
