@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217012003) do
+ActiveRecord::Schema.define(version: 20160217015041) do
 
   create_table "destinations", force: :cascade do |t|
     t.string   "subject",    limit: 255
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 20160217012003) do
     t.integer "dg_id",   limit: 4,     null: false
     t.string  "sender",  limit: 255,   null: false
     t.text    "pub_key", limit: 65535, null: false
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recipients", force: :cascade do |t|

@@ -1,25 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Emails</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @emails.each do |email| %>
-      <tr>
-        <td><%= link_to 'Show', email %></td>
-        <td><%= link_to 'Edit', edit_email_path(email) %></td>
-        <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<h1>Welcome to HuddleMail!</h1>
+<h2>Recipient List</h2>
+<p>Email address:</p>
+<input type="text" name="email" placeholder="john_doe@example.com" required /><br>
+<p>Public Key:</p>
+<textarea name="pub_key" cols="80" rows="10" placeholder="ssh-rsa ..." required ></textarea><br>
+<input type="submit" value="Add Recipient">
 <br>
+<br>
+<p>If you have finished adding all the recipients:</p>
+<input type="submit" value="Build New Distribution Group">
 
-<%= link_to 'New Email', new_email_path %>
+
+
+
+
+
+
+<!--<p id="notice"><%= notice %></p>-->
+
+<!--<h1>Send Emails</h1>-->
+
+<!--<table>-->
+  <!--<thead>-->
+    <!--<tr>-->
+      <!--<th colspan="3"></th>-->
+    <!--</tr>-->
+  <!--</thead>-->
+
+  <!--<tbody>-->
+    <!--<% @emails.each do |email| %>-->
+      <!--<tr>-->
+        <!--<td><%= link_to 'Show', email %></td>-->
+        <!--<td><%= link_to 'Edit', edit_email_path(email) %></td>-->
+        <!--<td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      <!--</tr>-->
+    <!--<% end %>-->
+  <!--</tbody>-->
+<!--</table>-->
+
+<!--<br>-->
+
+<!--<%= link_to 'New Email', new_email_path %>-->
