@@ -1,18 +1,44 @@
-<h1>Welcome to HuddleMail!</h1>
-<h2>Recipient List</h2>
-<p>Email address:</p>
-<input type="text" name="email" placeholder="john_doe@example.com" required /><br>
-<p>Public Key:</p>
-<textarea name="pub_key" cols="80" rows="10" placeholder="ssh-rsa ..." required ></textarea><br>
-<input type="submit" value="Add Recipient">
-<br>
-<br>
-<p>If you have finished adding all the recipients:</p>
-<input type="submit" value="Build New Distribution Group"  %> />
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>HuddleMail form</title>
+    <%= stylesheet_link_tag "style" %>
+    <%= stylesheet_link_tag "normalize" %>
 
 
 
+    <link rel="stylesheet" href="css/normalize.css">
 
+    
+        <link rel="stylesheet" href="css/style.css">
 
+    
+    
+    
+  </head>
 
+  <body>
 
+    <div class="wrapper">
+  <div class="logo"></div>
+  <p>Welcome to HuddleMail, try our service out below</p>
+  <form class="main">
+    <label for="to-email">To Email</label>
+    <input name="to-email" type="email">
+    <label for="subject">Subject</label>
+    <input name="subject" type="text">
+    <label for="message">Message</label>
+    <textarea name="message"></textarea>
+    <label for="public-key">Public Key</label>
+    <textarea name="public-key"></textarea>
+    <input class="button" type="submit" value="send">
+  </form>
+</div>
+    
+    
+    
+    
+    
+  </body>
+</html>
