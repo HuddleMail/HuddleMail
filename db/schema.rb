@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217015041) do
+ActiveRecord::Schema.define(version: 20160218165909) do
 
   create_table "distgroups", force: :cascade do |t|
     t.integer "dg_id",   null: false
@@ -27,13 +27,34 @@ ActiveRecord::Schema.define(version: 20160217015041) do
   end
 
   create_table "recipients", force: :cascade do |t|
-    t.string "email_address", limit: 254, null: false
-    t.text   "pub_key",                   null: false
+    t.string   "email_address",          limit: 254,              null: false
+    t.text     "pub_key",                                         null: false
+    t.string   "email",                              default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "recipients", ["email"], name: "index_recipients_on_email", unique: true
+  add_index "recipients", ["reset_password_token"], name: "index_recipients_on_reset_password_token", unique: true
 
   create_table "recipients_maps", force: :cascade do |t|
     t.integer "dg_id",    null: false
     t.text    "recip_id", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "login"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
