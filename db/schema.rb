@@ -13,33 +13,27 @@
 
 ActiveRecord::Schema.define(version: 20160217015041) do
 
-  create_table "destinations", force: :cascade do |t|
-    t.string   "subject",    limit: 255
-    t.string   "body",       limit: 255
-    t.string   "key",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "distgroups", force: :cascade do |t|
-    t.integer "dg_id",   limit: 4,     null: false
-    t.string  "sender",  limit: 255,   null: false
-    t.text    "pub_key", limit: 65535, null: false
+    t.integer "dg_id",   null: false
+    t.string  "sender",  null: false
+    t.text    "pub_key", null: false
   end
 
   create_table "emails", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "destination", limit: 254, null: false
+    t.string "subject"
+    t.text   "body"
+    t.text   "pub_key"
   end
 
   create_table "recipients", force: :cascade do |t|
-    t.string "email_address", limit: 254,   null: false
-    t.text   "pub_key",       limit: 65535, null: false
+    t.string "email_address", limit: 254, null: false
+    t.text   "pub_key",                   null: false
   end
 
   create_table "recipients_maps", force: :cascade do |t|
-    t.integer "dg_id",    limit: 4,     null: false
-    t.text    "recip_id", limit: 65535, null: false
+    t.integer "dg_id",    null: false
+    t.text    "recip_id", null: false
   end
 
 end
