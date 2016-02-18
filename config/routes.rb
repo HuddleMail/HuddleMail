@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  devise_for :recipients
   get 'home/index'
 
   devise_for :recipients
