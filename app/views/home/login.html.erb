@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HuddleMail form</title>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "normalize" %>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="logo"></div>
+  <h2>Log in to HuddleMail</h2>
+  <form class="main">
+    <label for="email-address">Email</label>
+    <input name="email-address" type="email">
+    <label for="password">Password</label>
+    <input name="password" type="hidden">
+    <input class="button" type="button" value="Back" <%= {:action => 'index'} %>>
+    <input class="button" type="submit" value="Log In">
+  </form>
+</div>
+</body>
+
+</html>

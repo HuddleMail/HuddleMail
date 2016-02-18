@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HuddleMail form</title>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "normalize" %>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="logo"></div>
+  <h2>Register for HuddleMail</h2>
+  <form class="main">
+    <label for="email-address">Email</label>
+    <input name="email-address" type="email">
+    <label for="public-key">Public Key</label>
+    <textarea name="public-key"></textarea>
+    <input class="button" type="button" value="Back" <%= {:action => 'index'} %>>
+    <input class="button" type="submit" value="Register">
+  </form>
+</div>
+</body>
+
+</html>
