@@ -10,8 +10,6 @@ class HomeController < ApplicationController
     @recipient = Recipient.new
   end
 
-
-
   def create
     @recipient = Recipient.new(recipient_param)
 
@@ -28,7 +26,9 @@ class HomeController < ApplicationController
 
   end
 
+  def success
 
+  end
 
   def show
 
