@@ -15,10 +15,12 @@
     <label for="email-address">Email</label>
     <input name="email-address" type="email">
     <label for="password">Password</label>
-    <input name="password" type="hidden">
-    <input class="button" type="button" value="Back" <%= {:action => 'index'} %>>
-    <input class="button" type="submit" value="Log In">
+    <input name="password" type="password">
   </form>
+
+  <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>
+  <%= button_to 'Log in', {:action => 'login'}, class: 'button', :method => :get %>
+
 </div>
 </body>
 

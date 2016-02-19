@@ -9,12 +9,11 @@
 
 <body>
 <div class="wrapper">
+  <%= yield -%>
   <div class="logo"></div>
   <h2>Welcome to HuddleMail, try our service out below</h2>
-  <form class="main">
-    <input class="button" type="button" value="Register">
-    <input class="button" type="button" value="Log In">
-  </form>
+  <%= button_to 'Register', {:action => 'register'}, class: 'button',:method => :get %>
+  <%= button_to 'Log In', {:action => 'login'}, class: 'button', :method => :get %>
 </div>
 </body>
 
