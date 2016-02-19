@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/register'
   get 'home/login'
+  get 'home/register'
   post 'home/create'
+  get 'home/success'
 
 
 end

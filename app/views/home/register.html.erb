@@ -11,16 +11,15 @@
 <div class="wrapper">
   <div class="logo"></div>
   <h2>Register for HuddleMail</h2>
-  <form class='main'>
-    <label for="email-address">Email</label>
-    <input name="email-address" type="email">
-    <label for="public-key">Public Key</label>
-    <textarea name="public-key"></textarea>
-  </form>
 
+  <%= form_tag :action => 'create' do %>
+      <label for="email">Email</label>
+      <%= text_field 'recipients', 'email' %></p>
+      <label for="pub_key">Public Key</label>
+      <%= text_area 'recipients', 'pub_key' %>
+      <%= button_to 'Register', {:action => 'create'},class: 'button'%>
+  <% end %>
   <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>
-  <%= button_to 'Register', {:action => 'register'}, class: 'button',:method => :get %>
-
 </div>
 </body>
 
