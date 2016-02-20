@@ -15,7 +15,7 @@
   <%= form_tag :action => 'create' do %>
       <label for="email">Email</label>
       <%= text_field 'recipients', 'email' %></p>
-      <label for="pub_key">Public Key</label>
+      <label for="password">Password</label>
       <%= text_area 'recipients', 'pub_key' %>
       <%= button_to 'Register', {:action => 'create'},class: 'button'%>
   <% end %>
