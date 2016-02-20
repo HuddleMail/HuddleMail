@@ -32,6 +32,16 @@ Sqlite 3.8.2
 
 * Deployment instructions
 
+1.  Find a Machine and install Ubuntu 14.4 32 or 64 bit will work
+2.  Install Ruby
+```
+
+sudo apt-get update
+sudo apt-get install build-essential libssl-dev libyaml-dev libreadline-dev openssl curl git-core zlib1g-dev bison libxml2-dev libxslt1-dev libcurl4-openssl-dev libsqlite3-dev sqlite3
+
+```
+
+
 * ...
 
 
