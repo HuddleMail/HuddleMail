@@ -14,9 +14,9 @@
 
   <%= form_tag :action => 'login' do %>
       <label for="email">Email</label>
-      <%= text_field 'users', 'email' %></p>
+      <%= text_field 'profiles', 'email' %></p>
       <label for="password">Password</label>
-      <%= password_field 'users', 'password' %>
+      <%= password_field 'profiles', 'password' %>
       <%= button_to 'Log in', {:action => 'create'},class: 'button'%>
   <% end %>
   <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>

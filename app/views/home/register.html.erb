@@ -14,9 +14,9 @@
 
   <%= form_tag :action => 'create' do %>
       <label for="email">Email</label>
-      <%= text_field 'recipients', 'email' %></p>
+      <%= text_field 'profiles', 'email' %></p>
       <label for="password">Password</label>
-      <%= text_area 'recipients', 'pub_key' %>
+      <%= text_area 'profiles', 'pub_key' %>
       <%= button_to 'Register', {:action => 'create'},class: 'button'%>
   <% end %>
   <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>

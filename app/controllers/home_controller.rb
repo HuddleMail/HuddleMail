@@ -7,13 +7,13 @@ class HomeController < ApplicationController
   end
 
   def register
-    @recipient = Recipient.new
+    @profile = Profile.new
   end
 
   def create
-    @recipient = Recipient.new(recipient_param)
+    @profile = Profile.new(profile_param)
 
-    if @recipient.save
+    if @profile.save
       redirect_to :action => 'success'
     else
       render :action => 'register'
@@ -21,8 +21,8 @@ class HomeController < ApplicationController
 
   end
 
-  def recipient_param
-    params.require(:recipients).permit(:email, :pub_key)
+  def profile_param
+    params.require(:profiles).permit(:email, :pub_key)
 
   end
 
