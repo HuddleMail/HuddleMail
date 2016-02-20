@@ -1,8 +1,7 @@
-== README
+![HuddleMail Logo](https://raw.github.com/HuddleMail/HuddleMail/master/logo.png)
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
+This software allows users to send encrypted emails to a distribution group(dg). One public and one private key is issued to each dg and the public key of each recipient of the dg is either found or given by the users. 
 Things you may want to cover:
 
 * Ruby version
@@ -10,7 +9,19 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+Ubuntu 14.04.4
 
+Apache 2.4.7
+
+Phusion Passenger 5.0.24
+
+Rails 4.2.5.1
+
+Ruby 2.2.1
+
+Node.js 5.6
+
+Sqlite 3.8.2
 * Database creation
 
 * Database initialization
@@ -21,7 +32,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+1.  Find a Machine and install Ubuntu 14.4 32 or 64 bit will work
+2.  Install and setup ruby on rails server [By using this link](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-passenger-and-apache-on-ubuntu-14-04)
 
 
 Please feel free to use a different markup language if you do not plan to run
