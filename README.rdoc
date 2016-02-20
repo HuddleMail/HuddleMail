@@ -1,4 +1,4 @@
-![main Logo](https://raw.githubusercontent.com/HuddleMail/HuddleMail/master/logo.png "Logo")
+![HuddleMail Logo](https://raw.github.com/nealio1000/HuddleMail/master/logo.png)
 == README
 
 This README would normally document whatever steps are necessary to get the
