@@ -11,22 +11,14 @@
 <div class="wrapper">
   <div class="logo"></div>
   <h2>Log in to HuddleMail</h2>
-  <!--<form class="main">-->
-    <!--<label for="email-address">Email</label>-->
-    <!--<input name="email-address" type="email">-->
-    <!--<label for="password">Password</label>-->
-    <!--<input name="password" type="password">-->
-  <!--</form>-->
 
   <%= form_tag :action => 'login' do %>
       <label for="email">Email</label>
       <%= text_field 'users', 'email' %></p>
       <label for="password">Password</label>
-      <%= text_area 'users', 'password' %>
-      <%= button_to 'Register', {:action => 'create'},class: 'button'%>
+      <%= password_field 'users', 'password' %>
+      <%= button_to 'Log in', {:action => 'create'},class: 'button'%>
   <% end %>
-
-  <%= button_to 'Log in', {:action => 'login'}, class: 'button', :method => :get %>
   <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>
 
 </div>
