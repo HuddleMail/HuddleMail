@@ -1,4 +1,4 @@
 class Recipient < ActiveRecord::Base
-  belongs_to :recipient_map
-  validates_presence_of :email, :pub_key
+  validates :email, presence: true, uniqueness: true
+  validates :pub_key, presence: true
 end
