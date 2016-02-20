@@ -33,13 +33,8 @@ Sqlite 3.8.2
 * Deployment instructions
 
 1.  Find a Machine and install Ubuntu 14.4 32 or 64 bit will work
-2.  Install Ruby
+2.  Install and setup ruby on rails server [By using this link](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-passenger-and-apache-on-ubuntu-14-04)
 
-```
-sudo apt-get update
-
-sudo apt-get install build-essential libssl-dev libyaml-dev libreadline-dev openssl curl git-core zlib1g-dev bison libxml2-dev libxslt1-dev libcurl4-openssl-dev libsqlite3-dev sqlite3
-```
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
