@@ -1,3 +1,4 @@
 class DistGroup < ActiveRecord::Base
-  has_many :recipient_maps
+  validates :email, presence: true, uniqueness: true
+  validates :pub_key, presence: true
 end
