@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   end
 
   def profile_param
-    params.require(:profiles).permit(:email, :pub_key)
+    params.require(:profiles).permit(:email, :password)
 
   end
 

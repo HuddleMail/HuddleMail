@@ -16,7 +16,7 @@
       <label for="email">Email</label>
       <%= text_field 'profiles', 'email' %></p>
       <label for="password">Password</label>
-      <%= text_area 'profiles', 'pub_key' %>
+      <%= password_area 'profiles', 'password' %>
       <%= button_to 'Register', {:action => 'create'},class: 'button'%>
   <% end %>
   <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>
