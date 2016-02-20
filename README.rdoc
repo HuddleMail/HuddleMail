@@ -1,9 +1,7 @@
 ![HuddleMail Logo](https://raw.github.com/HuddleMail/HuddleMail/master/logo.png)
-== README
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
+This software allows users to send encrypted emails to a distribution group(dg). One public and one private key is issued to each dg and the public key of each recipient of the dg is either found or given by the users. 
 Things you may want to cover:
 
 * Ruby version
@@ -11,7 +9,11 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
-
+Apache 2.0
+Phusion Passenger 5.0.24
+Rails 4.2.5.1
+Ruby 2.2.1
+Node.js 5.6
 * Database creation
 
 * Database initialization
