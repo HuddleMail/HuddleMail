@@ -14,7 +14,7 @@
 
   <%= form_tag :action => 'create' do %>
       <label for="email">Email</label>
-      <%= email_field 'profiles', 'email' %></p>
+      <%= email_field 'profiles', 'email' %>
       <label for="password">Password</label>
       <%= password_field 'profiles', 'password' %>
       <%= button_to 'Register', {:action => 'create'},class: 'button'%>
