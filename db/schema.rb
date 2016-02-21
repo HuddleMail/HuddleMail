@@ -11,23 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221045350) do
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+ActiveRecord::Schema.define(version: 20160221062909) do
 
   create_table "dist_group_recipient_maps", force: :cascade do |t|
     t.integer "dist_group_id"
@@ -50,41 +34,12 @@ ActiveRecord::Schema.define(version: 20160221045350) do
   add_index "profile_dist_group_maps", ["dist_group_id"], name: "index_profile_dist_group_maps_on_dist_group_id"
   add_index "profile_dist_group_maps", ["profile_id"], name: "index_profile_dist_group_maps_on_profile_id"
 
-  create_table "profiles", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "profiles", ["confirmation_token"], name: "index_profiles_on_confirmation_token", unique: true
-  add_index "profiles", ["email"], name: "index_profiles_on_email", unique: true
-  add_index "profiles", ["reset_password_token"], name: "index_profiles_on_reset_password_token", unique: true
-  add_index "profiles", ["unlock_token"], name: "index_profiles_on_unlock_token", unique: true
+# Could not dump table "profiles" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "recipients", force: :cascade do |t|
     t.string "email",   limit: 254, null: false
     t.text   "pub_key",             null: false
-  end
-
-  create_table "recipients_maps", force: :cascade do |t|
-    t.integer "dg_id",    null: false
-    t.text    "recip_id", null: false
   end
 
 end
