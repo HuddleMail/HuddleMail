@@ -6,8 +6,8 @@ class Profile < ActiveRecord::Base
   #        :confirmable, :lockable
 
 
-  # validates :email, presence: true, uniqueness: true
-  # validates :password, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
 
   # def send_devise_notification(notification, *args)
   #   devise_mailer.send(notification, self, *args).deliver_later
