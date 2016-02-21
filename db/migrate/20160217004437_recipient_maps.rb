@@ -1,4 +1,4 @@
-class Recipientmaps < ActiveRecord::Migration
+class RecipientMaps < ActiveRecord::Migration
   def self.up
     create_table :recipients_maps do |t|
       t.column :dg_id, :integer, :null => false
