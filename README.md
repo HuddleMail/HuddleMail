@@ -1,5 +1,9 @@
 ![HuddleMail Logo](https://raw.githubusercontent.com/HuddleMail/HuddleMail/master/logo.png)
 
+## Overview
+
+HuddleMail is an encrypted group emailer designed in Ruby on Rails. Our service provides an elegant front end for secured registration and login. Once logged in, you may create email group lists where each recpient is listed with their email address and public key. Once the list is submitted, a public key is created for you to use when emailing to the list. 
+
 ## Synopsis
 
 At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
