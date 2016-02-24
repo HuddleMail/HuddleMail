@@ -20,7 +20,7 @@ A short description of the motivation behind the creation and maintenance of the
 
 
 ```console
-git clone https://github.com/HuddleMail/HudleMail
+git clone https://github.com/HuddleMail/HuddleMail
 cd HuddleMail
 bundle install
 rake db:migrate
