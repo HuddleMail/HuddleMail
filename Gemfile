@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+#Use openpgp to create keypair
+gem 'openpgp'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

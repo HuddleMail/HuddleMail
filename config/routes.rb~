@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  resources :dis_groups do
-    resources :rlist
-  end
-  get 'key_man/index'
  # root 'home#index'
   get 'home/index'
   get 'home/register'

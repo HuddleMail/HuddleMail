@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221062909) do
+ActiveRecord::Schema.define(version: 20160227030912) do
+
+  create_table "dis_groups", force: :cascade do |t|
+    t.string   "disname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "dist_group_recipient_maps", force: :cascade do |t|
     t.integer "dist_group_id"
