@@ -96,7 +96,8 @@ require 'rubygems'
 		  #:passphrase    => '',
 		})
 	end
-
+	
+	# Function to get public key from keyring
 	def get_pubkey
 	  `gpg --export -a "#{@dname}"`
 	end
