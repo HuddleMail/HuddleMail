@@ -21,9 +21,9 @@ bundle install
 rake db:migrate
 rails server
 ```
-## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+//## API Reference
+//Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
 
 ## Tests
 Describe and show how to run the tests with code examples.
@@ -31,7 +31,7 @@ Describe and show how to run the tests with code examples.
 
 ## FAQ
 Why does this not work?
-Backroom reasons.
+It's in development
 
 
 ## Contributors
@@ -42,5 +42,4 @@ Currently not looking for contributers
 Any ideas you wish to add please send to cmonson91@gmail.com
 
 ## License
-
 MIT License
