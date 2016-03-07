@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "normalize" %>
+<head>
+  <meta charset="UTF-8">
+  <title>HuddleMail form</title>
+
+</head>
+
+<body>
+<div class="wrapper">
+  <%= yield -%>
+  <div class="logo"></div>
+  <h2>Welcome to HuddleMail, try our service out below</h2>
+  <%= button_to 'Register', users_registrations_new_path, class: 'button',:method => :get %>
+  <%= button_to 'Log In', users_sessions_new_path, class: 'button', :method => :get %>
+
+
+</div>
+</body>
+
+</html>
