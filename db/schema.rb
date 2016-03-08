@@ -34,9 +34,6 @@ ActiveRecord::Schema.define(version: 20160307171855) do
   add_index "profile_dist_group_maps", ["dist_group_id"], name: "index_profile_dist_group_maps_on_dist_group_id"
   add_index "profile_dist_group_maps", ["profile_id"], name: "index_profile_dist_group_maps_on_profile_id"
 
-# Could not dump table "profiles" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
-
   create_table "recipients", force: :cascade do |t|
     t.string "email",   limit: 254, null: false
     t.text   "pub_key",             null: false
@@ -53,20 +50,11 @@ ActiveRecord::Schema.define(version: 20160307171855) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
-    t.string   "unlock_token"
-    t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
 end
