@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'dist_group/new'
 
-  get 'recipient/new'
 
   devise_for :users, controllers: { sessions: "users/sessions" }
   root 'pages#show', page: 'index'
@@ -14,15 +12,7 @@ Rails.application.routes.draw do
     get "/users/sessions/new" => "users/sessions"
   end
 
-
-  Rails.application.routes.draw do
-  get 'dist_group/new'
-
-  get 'recipient/new'
-
-    get "/pages/:page" => "pages#show"
-  end
-
+  get "/pages/:page" => "pages#show"
   get 'pages/index'
   get 'pages/register'
   get 'pages/login'
@@ -31,4 +21,8 @@ Rails.application.routes.draw do
   post 'pages/login'
   get 'home/success'
   get 'users/registrations/new'
+  get 'dist_group/show'
+  get 'recipient/show'
+  get 'dist_group/new'
+  get 'recipient/new'
 end
