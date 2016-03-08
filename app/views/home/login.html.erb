@@ -11,7 +11,6 @@
 <div class="wrapper">
   <div class="logo"></div>
   <h2>Log in to HuddleMail</h2>
-
   <%= form_tag :action => 'login' do %>
       <label for="email">Email</label>
       <%= email_field 'profiles', 'email' %></p>
@@ -20,7 +19,6 @@
       <%= button_to 'Log in', {:action => 'create'},class: 'button'%>
   <% end %>
   <%= button_to 'Back', {:action => 'index'}, class: 'button',:method => :get %>
-
 </div>
 </body>
 
