@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'dist_group/new'
+
+  get 'recipient/new'
+
   devise_for :users, controllers: { sessions: "users/sessions" }
   root 'pages#show', page: 'index'
 
@@ -12,6 +16,10 @@ Rails.application.routes.draw do
 
 
   Rails.application.routes.draw do
+  get 'dist_group/new'
+
+  get 'recipient/new'
+
     get "/pages/:page" => "pages#show"
   end
 
