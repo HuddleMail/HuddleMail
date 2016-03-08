@@ -2,6 +2,7 @@ body {
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/134921/bg-resized.jpg);
 }
 
+
 .wrapper {
   max-width: 600px;
   margin: 100px auto;
@@ -41,6 +42,14 @@ p {
   margin: 30px 0;
 }
 
+.buttonrow {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 40px;
+  overflow: hidden;
+}
+
 .button {
   display: inline-block;
   border: none;
@@ -58,7 +67,7 @@ p {
   background-color: #be7e18;
 }
 
-ul {
+.navbar {
   list-style-type: none;
   margin: 0;
   padding: 0;
