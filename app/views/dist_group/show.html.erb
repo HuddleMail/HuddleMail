@@ -1,0 +1,23 @@
+<h1>Listing Distribution Groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Public Key</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @dist_groups.each do |dist_group| %>
+      <tr>
+        <td><%= dist_group.email %></td>
+        <td><%= dist_group.pub_key %></td>
+        <td><%= link_to "Show", recipient_show_path %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to "Make a New Group", recipient_new_path %>

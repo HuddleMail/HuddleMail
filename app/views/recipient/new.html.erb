@@ -1,2 +1,60 @@
-<h1>Recipient#new</h1>
-<p>Find me in app/views/recipient/new.html.erb</p>
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "normalize" %>
+
+<body>
+<div class="wrapper">
+  <div class="logo"></div>
+  <h2>Add Recipients</h2>
+  <%= form_for("DistGroup", :url => dist_group_new_path) do |f| %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :pub_key %><br />
+        <%= f.text_area :pub_key, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :pub_key %><br />
+        <%= f.text_area :pub_key, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :pub_key %><br />
+        <%= f.text_area :pub_key, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :pub_key %><br />
+        <%= f.text_area :pub_key, autofocus: true %>
+      </div>
+
+
+
+      <div class="actions">
+        <%= f.submit "Submit" %>
+      </div>
+  <% end %>
+  <%= render "users/shared/links" %>
+</div>
+</body>
+
+
