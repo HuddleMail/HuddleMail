@@ -2,7 +2,6 @@
 <%= stylesheet_link_tag "normalize" %>
 
 <body>
-<div class="wrapper">
   <div class="logo"></div>
   <h2>Add Recipients</h2>
   <%= form_for("DistGroup", :url => dist_group_new_path) do |f| %>
@@ -47,14 +46,10 @@
         <%= f.text_area :pub_key, autofocus: true %>
       </div>
 
-
-
       <div class="actions">
         <%= f.submit "Submit" %>
       </div>
   <% end %>
-  <%= render "users/shared/links" %>
-</div>
 </body>
 
 
