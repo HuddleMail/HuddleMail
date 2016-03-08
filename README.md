@@ -6,12 +6,11 @@ HuddleMail is an encrypted group emailer designed in Ruby on Rails. Our service 
 
 ## Synopsis
 
-HuddleMail is a system designed to use secure pgp to send to an group of recipient1s.
+HuddleMail generates a 4096 bit RSA public/private key pair for every distribution group that you create. In the distribution group you provide the email address and public key of each of your recipients. Then you encrypt your mail with the distribution groups public key and send it to your POSTFIX server running HuddleMail. The mail is decrypted using the correct private key from the keychain and is then encrypted and snet out for each recipient of the distribution group.
 
 ## Motivation
-
 We at WerePirate built HuddleMail in order to have a method of sending secure emial to a large group of recipents.
-
+Due to a lack of similar available services, we at WerePirate built HuddleMail so that you or your company would be able to send out email to your mailing list without pesky outsiders listening in.
 ## Installation
 
 ```console
@@ -22,24 +21,16 @@ rake db:migrate
 rails server
 ```
 
-//## API Reference
-//Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
 ## Tests
-Describe and show how to run the tests with code examples.
 
-
-## FAQ
-Why does this not work?
-It's in development
-
+This is how your run our tests
+```console
+rake test
+```
 
 ## Contributors
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-Currently not looking for contributers
-Any ideas you wish to add please send to cmonson91@gmail.com
+This project is still in early stages of development and we are not looking for contributers. Feel free to post an issue if you have any concerns or feature requests.
 
 ## License
 MIT License
