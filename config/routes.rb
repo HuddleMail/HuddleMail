@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   get 'recipient/show'
   get 'dist_group/new'
   get 'recipient/new'
+
+
+
 end
