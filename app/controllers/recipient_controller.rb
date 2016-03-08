@@ -1,18 +1,10 @@
 class RecipientController < ApplicationController
+  before_action :authenticate_user!
+
   def new
-
+    @recipient = Recipient.new
   end
 
-  def create
 
-  end
-
-  def show
-
-  end
-
-  def destroy
-
-  end
 
 end
