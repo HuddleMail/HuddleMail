@@ -1,6 +1,10 @@
 class DistGroupController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @dist_group = DistGroup.all
+  end
+
   def new
   end
 
@@ -9,13 +13,13 @@ class DistGroupController < ApplicationController
   end
 
   def destroy
-    @dist_group.destroy
+    @dist_group.destroy(params[:id])
   end
 
   # POST /dist_groups
   # POST /dist_groups.json
   def create
-    @dist_group = DisGroup.new(dist_group_params)
+    @dist_group = DistGroup.new(dist_group_params)
     @dname = @dist_group.distname
 
     respond_to do |format|
