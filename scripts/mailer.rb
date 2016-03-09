@@ -1,7 +1,7 @@
 #!/bin/ruby
 
 ENV['RAILS_ENV'] = "production"
-require '/home/neal/HuddleMail/config/environment.rb'
+require '../config/environment.rb'
 distGroupName = ""
 
 ## Read in Encrypted Message from STDIN
