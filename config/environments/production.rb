@@ -26,7 +26,7 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -83,13 +83,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'huddlemail.xyz' }
 
   ActionMailer::Base.smtp_settings = {
-      :address        => 'huddlemail.xyz',
-      :port           => '587',
-      :authentication => :plain,
-      :user_name      => ENV['SENDGRID_USERNAME'],
-      :password       => ENV['SENDGRID_PASSWORD'],
-      :domain         => 'huddlemail.xyz',
-      :enable_starttls_auto => true
+      :address        => 'localhost',
+      :port           => '25',
+      :domain         => 'huddlemail.xyz'
   }
 
 end
