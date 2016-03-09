@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227030912) do
+ActiveRecord::Schema.define(version: 20160309043915) do
 
   create_table "dis_groups", force: :cascade do |t|
     t.string   "disname"
@@ -47,5 +47,15 @@ ActiveRecord::Schema.define(version: 20160227030912) do
     t.string "email",   limit: 254, null: false
     t.text   "pub_key",             null: false
   end
+
+  create_table "rlists", force: :cascade do |t|
+    t.string   "email"
+    t.text     "pubkey"
+    t.integer  "dis_group_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rlists", ["dis_group_id"], name: "index_rlists_on_dis_group_id"
 
 end

@@ -1,7 +1,6 @@
 class DisGroup < ActiveRecord::Base
-  has_many :rlist
-  def get_dis_name
-	return disname
-  end
+  validates :disname, presence: true, 
+	length: { minimum: 5 }
+  has_many :rlists
 
 end

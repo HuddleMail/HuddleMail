@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :dis_groups do
-    resources :rlist
+    resources :rlists
   end
   get 'key_man/index'
  # root 'home#index'

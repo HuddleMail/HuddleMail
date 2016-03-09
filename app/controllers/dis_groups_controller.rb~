@@ -34,7 +34,9 @@ require 'rubygems'
 
     respond_to do |format|
       if @dis_group.save
-	make_keypair	
+	make_keypair
+	# make_file
+	
 	
         format.html { redirect_to @dis_group, notice: 'Dis group was successfully created.' }
         format.json { render :@dis_group, status: :created, location: @dis_group }
