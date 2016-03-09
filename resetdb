@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# reset database
+rake db:migrate:reset
+
+# delete keyring
+rm  ../.gnupg/pubring.gpg
+rm  ../.gnupg/secring.gpg
+
+# implant database seeds
+rake db:seed
