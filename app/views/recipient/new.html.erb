@@ -1,54 +1,20 @@
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "normalize" %>
 
+
+<!--Testing nested forms for grabbing mulitple recipients at once idk...-->
+
 <body>
   <div class="logo"></div>
   <h2>Add Recipients</h2>
-  <%= form_for("DistGroup", :url => dist_group_new_path) do |f| %>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :pub_key %><br />
-        <%= f.text_area :pub_key, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :pub_key %><br />
-        <%= f.text_area :pub_key, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :pub_key %><br />
-        <%= f.text_area :pub_key, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :pub_key %><br />
-        <%= f.text_area :pub_key, autofocus: true %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Submit" %>
-      </div>
+  <%= form_for("DistGroup") do |f| %>
+    <%= f.fields_for :recipients do |recipient| %>
+      <p><label for = "email">Email</label>:
+        <%= text_field 'recipients', 'email' %></p>
+      <p><label for = "pub_key">Public Key</label>
+        <%= text_area 'recipients', 'pub_key' %></p>
+    <% end %>
+    <%= f.submit %>
   <% end %>
 </body>
 
