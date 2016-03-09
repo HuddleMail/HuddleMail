@@ -2,6 +2,7 @@
 
 ENV['RAILS_ENV'] = "production"
 require '/home/neal/HuddleMail/config/environment.rb'
+distGroupName = ""
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
@@ -21,10 +22,8 @@ decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
   if localPart.nil?
     result = ""
   else
-    result = localPart[1]
+    distGroupName = localPart[1]
   end
-
-  distGroupName = result
 
 ##########################################################################
 
@@ -38,5 +37,3 @@ Recipient.find_each do |recipient|
   `echo "#{encrypted}" | mail -s "ENCRYPTED" #{recipient}.email`
 
 end
-
-
