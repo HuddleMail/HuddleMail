@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'pages/register'
   post 'pages/create'
   post 'pages/login'
+  post 'dist_group/new'
+  post 'recipient/new'
   get 'home/success'
   get 'users/registrations/new'
   get 'dist_group/show'
