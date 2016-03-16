@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Listing Distribution Groups</h1>
 
 <table>
@@ -6,13 +8,14 @@
       <th>Distribution Name</th>
       <th colspan="3"></th>
     </tr>
-  </thead>>
-  
+  </thead>
+
   <tbody>
     <% @dist_groups.each do |dist_group| %>
       <tr>
-        <td><%= link_to dist_group.disname, dist_group %></td>
+        <td><%= dist_group.dist_name %></td>
         <td><%= link_to 'Show', dist_group %></td>
+        <td><%= link_to 'Edit', edit_dist_group_path(dist_group) %></td>
         <td><%= link_to 'Destroy', dist_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -21,4 +24,4 @@
 
 <br>
 
-<%= link_to "Make a New Group", dist_groups_new_path %>
+<%= link_to 'Create A New Distribution Group', dist_group_new_path %>

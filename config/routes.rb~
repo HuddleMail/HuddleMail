@@ -15,10 +15,6 @@ Rails.application.routes.draw do
     resources :rlists
   end
 
-  resources :dist_groups do
-    resources :recipents
-  end
-
   get "/pages/:page" => "pages#show"
   get 'pages/index'
   get 'pages/register'
@@ -30,11 +26,10 @@ Rails.application.routes.draw do
   post 'recipient/new'
   get 'home/success'
   get 'users/registrations/new'
-  get 'dist_group/show' => "dist_group#index"
+  get 'dist_group/show'
   get 'recipient/show'
   get 'dist_group/new'
   get 'recipient/new'
-  get 'dist_group' => "dist_group#index"
 
 
 end

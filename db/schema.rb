@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20160310010655) do
 
+  create_table "dis_groups", force: :cascade do |t|
+    t.string   "disname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dist_groups", force: :cascade do |t|
     t.string   "dist_name"
     t.text     "pub_key"
@@ -32,6 +38,16 @@ ActiveRecord::Schema.define(version: 20160310010655) do
   end
 
   add_index "recipients", ["dist_group_id"], name: "index_recipients_on_dist_group_id"
+
+  create_table "rlists", force: :cascade do |t|
+    t.string   "email"
+    t.text     "pubkey"
+    t.integer  "dis_group_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rlists", ["dis_group_id"], name: "index_rlists_on_dis_group_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

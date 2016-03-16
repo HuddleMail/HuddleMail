@@ -1,0 +1,76 @@
+class DistGroupController < ApplicationController
+  before_action :authenticate_user!
+  require 'openpgp'
+
+  #before_action :set_dis_group, only: [:show, :edit, :update, :destroy] 
+
+  def index
+    @dist_groups = DistGroup.all
+  end
+
+  def new
+    @dist_group = DistGroup.new
+  end
+
+  def show
+    @d = DistGroup.new
+    #@dname = @dist_group.dist_name
+    #@dpubkey = get_pubkey
+  end
+
+  def destroy
+    @dist_group.destroy(params[:id])
+  end
+
+  # POST /dist_groups
+  # POST /dist_groups.json
+  def create
+    @user = User.find(params[:user_id])
+    @dist_groups = @user.DistGroup.create(dist_group_params)
+    redirect_to @dist_groups
+
+    respond_to do |format|
+      if @dist_group.save
+        make_keypair
+        # make_file
+
+
+        format.html { redirect_to @dist_group, notice: 'Dis group was successfully created.' }
+        format.json { render :@dist_group, status: :created, location: @dist_group }
+      else
+        format.html { render :new }
+        format.json { render json: @dist_group.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dist_group
+    @dist_group = DistGroup.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dist_group_params
+    params.require(:dist_group).permit(:dist_name)
+  end
+
+  # Function to call openpgp to make a key-pair
+  def make_keypair
+    gpg = OpenPGP::Engine::GnuPG.new(:homedir => '~/.gnupg')
+    key_id = gpg.gen_key({
+                             :key_type      => 'RSA',
+                             :key_length    => 4096,
+                             :subkey_type   => 'RSA',
+                             :subkey_length => 4096,
+                             :name          => @dname,
+                             :comment       => nil
+                         })
+  end
+	
+	# Function to get public key from keyring
+  private
+    def get_pubkey
+      `gpg --export -a "#{@dname}"`
+  end
+end
