@@ -11,27 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310010655) do
-
-  create_table "dist_groups", force: :cascade do |t|
-    t.string   "dist_name"
-    t.text     "pub_key"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "dist_groups", ["user_id"], name: "index_dist_groups_on_user_id"
-
-  create_table "recipients", force: :cascade do |t|
-    t.string   "email"
-    t.text     "pub_key"
-    t.integer  "dist_group_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "recipients", ["dist_group_id"], name: "index_recipients_on_dist_group_id"
+ActiveRecord::Schema.define(version: 20160307171855) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
