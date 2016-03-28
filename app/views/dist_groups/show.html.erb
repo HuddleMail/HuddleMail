@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h1>Distribution name: <%= @dist_group.dist_name %></h1>
+</p>
+  <p>
+<% if @dpubkey.blank? %>
+  <strong>Public Key:</strong><br>
+  <p><font color="red">The public key for <%@dist_group.dist_name %> is not found. Delete this group and make a new one.</font></p>
+  <% else %>
+  <h2>Public Key:</h2><br>
+  <%= @dpubkey %>
+  </p>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_dist_group_path(@dist_group) %> |
+<%= link_to 'Back', dist_groups_path %>
