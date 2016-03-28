@@ -1,6 +1,0 @@
-<h1>Editing Dis Group</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @dis_group %> |
-<%= link_to 'Back', dis_groups_path %>
