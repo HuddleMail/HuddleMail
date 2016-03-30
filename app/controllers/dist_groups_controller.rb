@@ -14,6 +14,7 @@ class DistGroupsController < ApplicationController
   # GET /dist_groups/1
   # GET /dist_groups/1.json
   def show
+		@isrecipient = Recipient.find(params[:id])
     @dname = @dist_group.dist_name    
     @dpubkey = get_pubkey
   end

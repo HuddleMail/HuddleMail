@@ -6,14 +6,43 @@
   <p>
 <% if @dpubkey.blank? %>
   <strong>Public Key:</strong><br>
-  <p><font color="red">The public key for <%@dist_group.dist_name %> is not found. Delete this group and make a new one.</font></p>
+  <p><font color="red">The public key for <font color="black"><%= @dist_group.dist_name %></font> is not found. Delete this group and make a new one.</font></p>
   <% else %>
   <h2>Public Key:</h2><br>
   <%= @dpubkey %>
   </p>
 <% end %>
 
+<h2>Add a recipient:</h2>
+<%= form_for([@dist_group, @dist_group.recipients.build]) do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :public_key %><br>
+    <%= f.text_area :pub_key %>
+  </p>
+  <p>
+    <strong><%= f.submit "Add Recipient" %></strong>
+  </p>
+<% end %>
 
+<% if @dist_group.recipients.present? %>
+	<h2>Recipients in the Distribution Group</h2>
+	  <% @dist_group.recipients.each do |recipient| %>
+	    <p>
+	      <strong>Email:</strong>
+	      <%= recipient.email %>
+	     <br>
+	      <strong>Associated public key:</strong><br>
+	      <%= recipient.pub_key %>
+	    </p>
+	<% end %>
+<% else %>
+	<h2>Distribution Group is Empty.</h2>
+	<p>Add some people, so you can send to them.</p>
+<% end %>
 
 <%= link_to 'Edit', edit_dist_group_path(@dist_group) %> |
 <%= link_to 'Back', dist_groups_path %>

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :dist_groups do
-    resources :recipents
+    resources :recipients
   end
 
   get "/pages/:page" => "pages#show"
