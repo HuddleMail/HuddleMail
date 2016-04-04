@@ -9,12 +9,13 @@ class DistGroupsController < ApplicationController
   # GET /dist_groups.json
   def index
     @dist_groups = DistGroup.all
+		@current_id = current_user.id
+    @user_groups = DistGroup.where(:user_id => @current_id)
   end
 
   # GET /dist_groups/1
   # GET /dist_groups/1.json
   def show
-		@isrecipient = Recipient.find(params[:id])
     @dname = @dist_group.dist_name    
     @dpubkey = get_pubkey
   end
@@ -79,7 +80,7 @@ class DistGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dist_group_params
-      params.require(:dist_group).permit(:dist_name)
+      params.require(:dist_group).permit(:dist_name, :user_id)
     end
 
 	# Function to call openpgp to make a key-pair
@@ -87,9 +88,9 @@ class DistGroupsController < ApplicationController
 	  gpg = OpenPGP::Engine::GnuPG.new(:homedir => '~/.gnupg')
 	  key_id = gpg.gen_key({
 		  :key_type      => 'RSA',
-		  :key_length    => 4096,
+		  :key_length    => 1024,
 		  :subkey_type   => 'RSA',
-		  :subkey_length => 4096,
+		  :subkey_length => 1024,
 		  :name          => @dname,
 		  :comment       => nil,
 		  #:email         => '',

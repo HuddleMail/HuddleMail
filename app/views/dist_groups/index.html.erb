@@ -2,6 +2,11 @@
 
 <h1>Listing Distribution Groups</h1>
 
+<h1><%= @user_id %></h1>
+<h1><%= current_user.id %><br></h1>
+<p><%= @current_id %></p>
+
+
 <table>
   <thead>
     <tr>
@@ -32,13 +37,15 @@
   </thead>
 
   <tbody>
-    <% @dist_groups.each do |dist_group| %>
+	<% if @user_groups != nil %>
+    <% @user_groups.each do |dist_group| %>
       <tr>
         <td><%= link_to dist_group.dist_name, dist_group %></td>
         <td><%= link_to 'Show', dist_group %></td>
         <td><%= link_to 'Destroy', dist_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+	<% end %>
   </tbody>
 </table>
 
