@@ -9,7 +9,7 @@
   <div class="navbar">
     <% if user_signed_in? %>
         <li><%= link_to current_user.email, edit_user_registration_path, class: 'active' %></li>
-        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Home', "/dist_groups/user_index" %></li>
         <li><%= link_to 'Profile', edit_user_registration_path %></li>
         <li><%= link_to 'Distribution Groups', dist_groups_path %></li>
         <li><%= link_to 'Log out', destroy_user_session_path, :method => :get %></li>

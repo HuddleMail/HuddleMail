@@ -13,6 +13,13 @@ class DistGroupsController < ApplicationController
     @user_groups = DistGroup.where(:user_id => @current_id)
   end
 
+	#GET /dist_groups/user_index
+	def user_index
+    #@dist_groups = DistGroup.all
+		@current_id = current_user.id
+    @user_groups = DistGroup.where(:user_id => @current_id)
+	end
+
   # GET /dist_groups/1
   # GET /dist_groups/1.json
   def show

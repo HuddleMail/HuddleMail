@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :rlists
   end
 
+	get 'dist_groups/user_index'
+
   resources :dist_groups do
     resources :recipients
   end
