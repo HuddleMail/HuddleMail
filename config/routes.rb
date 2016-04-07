@@ -15,9 +15,9 @@ Rails.application.routes.draw do
     resources :rlists
   end
 
-	get 'dist_groups/user_index'
+	get 'dist_groups/all'
 
-  resources :dist_groups do
+  resources :dist_groups, except: :edit do
     resources :recipients
   end
 

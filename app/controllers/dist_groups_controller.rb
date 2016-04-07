@@ -8,14 +8,14 @@ class DistGroupsController < ApplicationController
   # GET /dist_groups
   # GET /dist_groups.json
   def index
-    @dist_groups = DistGroup.all
+    #@dist_groups = DistGroup.all
 		@current_id = current_user.id
     @user_groups = DistGroup.where(:user_id => @current_id)
   end
 
 	#GET /dist_groups/user_index
-	def user_index
-    #@dist_groups = DistGroup.all
+	def all
+    @dist_groups = DistGroup.all
 		@current_id = current_user.id
     @user_groups = DistGroup.where(:user_id => @current_id)
 	end
@@ -95,9 +95,9 @@ class DistGroupsController < ApplicationController
 	  gpg = OpenPGP::Engine::GnuPG.new(:homedir => '~/.gnupg')
 	  key_id = gpg.gen_key({
 		  :key_type      => 'RSA',
-		  :key_length    => 1024,
+		  :key_length    => 4096,
 		  :subkey_type   => 'RSA',
-		  :subkey_length => 1024,
+		  :subkey_length => 4096,
 		  :name          => @dname,
 		  :comment       => nil,
 		  #:email         => '',
