@@ -14,7 +14,9 @@
 !/log/.keep
 /tmp
 
-
+HuddleMail_development
+HuddleMail_test
+Gemfile.lock
 *.rbc
 capybara-*.html
 .rspec
