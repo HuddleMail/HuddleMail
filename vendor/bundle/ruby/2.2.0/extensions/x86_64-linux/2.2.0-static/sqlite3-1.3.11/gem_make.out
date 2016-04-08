@@ -1,4 +1,4 @@
-/home/neal/.rbenv/versions/2.2.3/bin/ruby -r ./siteconf20160307-6722-1wu9q65.rb extconf.rb
+/home/neal/.rbenv/versions/2.2.3/bin/ruby -r ./siteconf20160406-13955-zvkufk.rb extconf.rb
 checking for sqlite3.h... yes
 checking for sqlite3_libversion_number() in -lsqlite3... yes
 checking for rb_proc_arity()... yes
@@ -17,12 +17,12 @@ creating Makefile
 make "DESTDIR=" clean
 
 make "DESTDIR="
-compiling sqlite3.c
 compiling database.c
-compiling statement.c
-compiling exception.c
 compiling backup.c
+compiling exception.c
+compiling statement.c
+compiling sqlite3.c
 linking shared-object sqlite3/sqlite3_native.so
 
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20160307-6722-n4kmvr/sqlite3
+/usr/bin/install -c -m 0755 sqlite3_native.so ./.gem.20160406-13955-1r60v43/sqlite3
