@@ -7,8 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# User.create!(email: "neal@huddlemail.xyz", password: "testing123")
-User.create! :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
-
-DistGroup.create! :email => 'test_group@huddlemail.xyz', :pub_key => 'yfjfjgvjyfhtstratu'
-
+DistGroup.create(dist_name: 'test', pub_key: 'rngjkrngjrngerekng', user_id: '1')
+Recipient.create(email: 'recipient1@test.com', pub_key: 'hfsadohaidheefhjb', dist_group_id: 1)
+Recipient.create(email: 'recipient2@test.com', pub_key: 'sfsfsefrgregegrge', dist_group_id: 1)
+Recipient.create(email: 'recipient3@test.com', pub_key: 'htrhyhtrhhrthtrht', dist_group_id: 1)
+Recipient.create(email: 'recipient4@test.com', pub_key: '34r3243gegdgdfggg', dist_group_id: 1)
+Recipient.create(email: 'recipient5@test.com', pub_key: 'etewtewrtewtrewte', dist_group_id: 1)
