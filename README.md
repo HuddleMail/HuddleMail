@@ -18,6 +18,9 @@ bundle install
 rake db:migrate
 rails server
 ```
+please also visit our [wiki](https://github.com/HuddleMail/HuddleMail/wiki/Configuration-Choices-and-Changes) for configuration settings
+
+
 
 ## Tests
 This is how to run our tests
