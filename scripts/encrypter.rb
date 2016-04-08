@@ -4,8 +4,8 @@
 incoming = $stdin.read
 #puts incoming
 
-f = File.open('/tmp/neal','w')
-f.puts incoming
+# f = File.open('/tmp/neal','w')
+# f.puts incoming
 
 ## Encrypt the message for Recipient
 encrypted = `echo "#{incoming}" | gpg --no-batch -a -e -r "nealio"`
