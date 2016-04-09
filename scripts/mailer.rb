@@ -4,20 +4,20 @@
 # require '../config/environment.rb'
 
 ## Read in Encrypted Message from STDIN
-# incoming = $stdin.read
+incoming = $stdin.read
 
 ## Decrypt the Incoming Group Message
-# decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
 
-incoming = "From: neal friedman <nealiof1000@gmail.com>
-Date: Fri, 8 Apr 2016 08:54:55 -0600
-Message-ID: <CA+GV4WqXHt7sHAGCXVwydcOyqkHjo-7DK3ht18tWtvJc5j36Vg@mail.gmail.com>
-Subject: this is a test
-To: hello@huddlemail.xyz"
+# incoming = "From: neal friedman <nealiof1000@gmail.com>
+# Date: Fri, 8 Apr 2016 08:54:55 -0600
+# Message-ID: <CA+GV4WqXHt7sHAGCXVwydcOyqkHjo-7DK3ht18tWtvJc5j36Vg@mail.gmail.com>
+# Subject: this is a test
+# To: hello@huddlemail.xyz"
 
 ## Pull out the local part
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
-tmp = regex.match(incoming)
+tmp = regex.match(decrypted)
 result = tmp[1]
 
 
