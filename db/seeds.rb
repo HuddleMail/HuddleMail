@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+User.create(email: 'email', encrypted_password: 'test password', sign_in_count: 0)
 dg = DistGroup.create(dist_name: 'test', pub_key: 'rngjkrngjrngerekng', user_id: '1')
 dg.recipients.create(email: 'recipient1@test.com', pub_key: 'hfsadohaidheefhjb')
 dg.recipients.create(email: 'recipient2@test.com', pub_key: 'sfsfsefrgregegrge')
