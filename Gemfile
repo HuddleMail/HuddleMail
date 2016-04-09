@@ -47,6 +47,4 @@ group :development do
   gem 'spring'
 end
 
-gem 'openpgp'
-
 gem 'devise'
