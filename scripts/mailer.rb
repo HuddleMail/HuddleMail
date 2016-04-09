@@ -1,39 +1,36 @@
 #!/bin/ruby
 
-ENV['RAILS_ENV'] = "production"
-require '../config/environment.rb'
-distGroupName = ""
+# ENV['RAILS_ENV'] = "production"
+# require '../config/environment.rb'
 
 ## Read in Encrypted Message from STDIN
-incoming = $stdin.read
+# incoming = $stdin.read
 
 ## Decrypt the Incoming Group Message
-decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+# decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
 
-## Somehow figure out which Distribution group to use here
+incoming = "From: neal friedman <nealiof1000@gmail.com>
+Date: Fri, 8 Apr 2016 08:54:55 -0600
+Message-ID: <CA+GV4WqXHt7sHAGCXVwydcOyqkHjo-7DK3ht18tWtvJc5j36Vg@mail.gmail.com>
+Subject: this is a test
+To: hello@huddlemail.xyz"
 
-  # Regular Expression used to extract the local part of the addressed email
-  regexLocalPart = /Delivered-To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
+## Pull out the local part
+regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
+tmp = regex.match(incoming)
+result = tmp[1]
 
-  # Store the local part of the addressed email
-  localPart = decrypted.match regexLocalPart
 
-  # Nil test for local part. Set result to empty string if nil, otherwise set result to first match.
-  if localPart.nil?
-    result = ""
-  else
-    distGroupName = localPart[1]
-  end
 
 ##########################################################################
 
 ## for each recipient encrypt and send
-Recipient.find_each do |recipient|
-
- # Encrypt the message for Recipient
-  encrypted = `echo "#{incoming}" | gpg --no-batch -a -e -r "#{recipient.pub_key}"`
-
- # Email Encrypted Message to Recipient
-  `echo "#{encrypted}" | mail -s "ENCRYPTED" #{recipient}.email`
-
-end
+# Recipient.find_each do |recipient|
+#
+#  # Encrypt the message for Recipient
+#   encrypted = `echo "#{incoming}" | gpg --no-batch -a -e -r "#{recipient.pub_key}"`
+#
+#  # Email Encrypted Message to Recipient
+#   `echo "#{encrypted}" | mail -s "ENCRYPTED" #{recipient}.email`
+#
+# end
