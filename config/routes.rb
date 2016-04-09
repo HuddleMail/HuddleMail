@@ -11,11 +11,8 @@ Rails.application.routes.draw do
     get "/users/sessions/new" => "users/sessions"
   end
 
-  resources :dis_groups do
-    resources :rlists
-  end
 
-	get 'dist_groups/user_index'
+  get 'dist_groups/all'
 
   resources :dist_groups do
     resources :recipients
