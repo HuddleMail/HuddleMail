@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Distribution Groups</h1><table>
+<h1>Listing Distribution Groups</h1>
 
+<table>
   <thead>
     <tr>
       <th>Distribution Name</th>
@@ -10,15 +11,13 @@
   </thead>
 
   <tbody>
-	<% if @user_groups != nil %>
-    <% @user_groups.each do |dist_group| %>
+    <% @dist_groups.each do |dist_group| %>
       <tr>
         <td><%= link_to dist_group.dist_name, dist_group %></td>
         <td><%= link_to 'Show', dist_group %></td>
         <td><%= link_to 'Destroy', dist_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-	<% end %>
   </tbody>
 </table>
 
