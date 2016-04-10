@@ -35,7 +35,7 @@ decryptedout.puts decrypted
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(decrypted)
 result = tmp[1]
-dgnameout = File.open('/tmp/decrypted.out', 'w')
+dgnameout = File.open('/tmp/dgname.out', 'w')
 dgnameout.puts result
 
 
