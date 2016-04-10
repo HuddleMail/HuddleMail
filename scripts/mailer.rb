@@ -71,6 +71,6 @@ recipients.each do |recipient|
   ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
-  `rm -f /tmp/recipkeys.out`
+  #`rm -f /tmp/recipkeys.out`
 end
 
