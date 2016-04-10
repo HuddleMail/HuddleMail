@@ -13,7 +13,6 @@
       <tr>
         <td><h1><%= dist_group.dist_name %></h1></td>
         <td><%= button_to 'Show', dist_group, class: 'greenbutton', :method => :get %></td>
-        <td><%= button_to 'Destroy', dist_group, class: 'redbutton', method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +20,3 @@
 
 <br>
 
-<%= button_to 'New Distribution group', new_dist_group_path, class: 'button',:method => :get %>
