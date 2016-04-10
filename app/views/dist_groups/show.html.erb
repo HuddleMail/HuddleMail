@@ -30,15 +30,15 @@
 
 <% if @dist_group.recipients.present? %>
 	<h2>Recipients in the Distribution Group</h2>
-	  <% @dist_group.recipients.each do |recipient| %>
-	    <p>
-	      <strong>Email:</strong>
-	      <%= recipient.email %>
-	     <br>
-	      <strong>Associated public key:</strong><br>
-	      <%= simple_format(recipient.pub_key) %>
-	    </p>
-	<% end %>
+  <% @dist_group.recipients.each do |recipient| %>
+    <p>
+      <strong>Email:</strong>
+      <%= recipient.email %>
+     <br>
+      <strong>Associated public key:</strong><br>
+      <%= simple_format(recipient.pub_key) %>
+    </p>
+  <% end %>
 <% else %>
 	<h2>Distribution Group is Empty.</h2>
 	<p>Add some people, so you can send to them.</p>
