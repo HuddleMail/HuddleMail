@@ -62,7 +62,7 @@ recipients.each do |recipient|
  recipkeys.puts recipient.pub_key
 
  ## import the recipients key
-  key = `cat /tmp/recipkeys.out | gpg  --import`
+  key = `gpg  --import /tmp/recipkeys.out`
   recipkeys.puts key
   ## encrypt message with recipients key
   message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
@@ -71,6 +71,6 @@ recipients.each do |recipient|
   ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
-  # `rm -f /tmp/recipkeys.out`
+  `rm -f /tmp/recipkeys.out`
 end
 
