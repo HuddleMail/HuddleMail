@@ -5,7 +5,7 @@ require 'sqlite3'
 
 ActiveRecord::Base.establish_connection(
     :adapter => "sqlite3",
-    :database => "/home/huddlemail/HuddleMail/HuddleMail_development"
+    :database => "/home/neal/RubymineProjects/HuddleMail/HuddleMail_development"
 )
 
 class DistGroup < ActiveRecord::Base
@@ -23,41 +23,28 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
-mailout = File.open('/tmp/incoming.out', 'w')
-mailout.puts incoming
+# mailout = File.open('/tmp/incoming.out', 'w')
+# mailout.puts incoming
 
 # ## Decrypt the Incoming Group Message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-f = File.open('/tmp/decrypted.out', 'w')
-f.puts decrypted
+# f = File.open('/tmp/decrypted.out', 'w')
+# f.puts decrypted
 
 ## Pull out the local part
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
-tmp = regex.match(incoming)
+tmp = regex.match(decrypted)
 result = tmp[1]
 
+## Query for the distgroup where dist_name == emailLocalPart
+dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
+dist_group = dg[0]
 
-`echo "#{decrypted}" | mail -s "DECRYPTED" nealiof1000@gmail.com`
+## Query all the recipients in the found dist_group
+recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE dist_group_id = '#{dist_group.id}'"
 
-
-# params[:id] = "dist_name = 'test'"
-# dg = DistGroup.find_by params[:id]
-
-
-# dgRelation = DistGroup.where(:dist_name => 'test') ##maybe works??
-# dg = DistGroup.find_by dist_name: result
-
-# puts dg.dist_name
-
-##########################################################################
-
-## for each recipient encrypt and send
-# Recipient.find_each do |recipient|
-#
-#  # Encrypt the message for Recipient
-#   encrypted = `echo "#{incoming}" | gpg --no-batch -a -e -r "#{recipient.pub_key}"`
-#
-#  # Email Encrypted Message to Recipient
-#   `echo "#{encrypted}" | mail -s "ENCRYPTED" #{recipient}.email`
-#
-# end
+## Iterate through each recipient
+recipients.each do |recipient|
+  message = `#{recipient.pub_key} | gpg -e -a -r #{recipient.email}`
+  `echo "#{message}" | mail -s "ENCRYPTED" #{recipient.email}`
+end
