@@ -32,6 +32,7 @@ decryptedout = File.open('/tmp/decrypted.out', 'w')
 decryptedout.puts decrypted
 
 ## Pull out the local part
+tmp = Array.new(4)
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(decrypted)
 result = tmp[1]
