@@ -11,7 +11,7 @@
   <tbody>
     <% @dist_groups.each do |dist_group| %>
       <tr>
-        <td><h2><%= link_to dist_group.dist_name, dist_group %></h2></td>
+        <td><h1><%= dist_group.dist_name %></h1></td>
         <td><%= button_to 'Show', dist_group, class: 'greenbutton', :method => :get %></td>
         <td><%= button_to 'Destroy', dist_group, class: 'redbutton', method: :delete %></td>
       </tr>
