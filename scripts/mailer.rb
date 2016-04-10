@@ -28,13 +28,17 @@ mailout.puts incoming
 
 # ## Decrypt the Incoming Group Message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-f = File.open('/tmp/decrypted.out', 'w')
-f.puts decrypted
+decryptedout = File.open('/tmp/decrypted.out', 'w')
+decryptedout.puts decrypted
 
 ## Pull out the local part
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(decrypted)
 result = tmp[1]
+dgnameout = File.open('/tmp/decrypted.out', 'w')
+dgnameout.puts result
+
+
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
