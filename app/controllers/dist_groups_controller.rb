@@ -32,10 +32,6 @@ class DistGroupsController < ApplicationController
     @dist_group = DistGroup.new
   end
 
-  # GET /dist_groups/1/edit
-  def edit
-  end
-
   # POST /dist_groups
   # POST /dist_groups.json
   def create
