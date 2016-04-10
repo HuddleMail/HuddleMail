@@ -58,7 +58,6 @@ recipients.each do |recipient|
 
  ## import the recipients key
   `cat /tmp/recipkeys.out | gpg  --import`
-  recipkeys.puts key
   ## encrypt message with recipients key
   message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
   messageout.puts message
