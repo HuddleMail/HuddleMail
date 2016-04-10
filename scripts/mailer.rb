@@ -35,8 +35,8 @@ result = tmp[1]
 
 ## Decrypt the received message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-decryptedout = File.open('/tmp/decrypted', 'w')
-decryptedout.puts decrypted
+# decryptedout = File.open('/tmp/decrypted', 'w')
+# decryptedout.puts decrypted
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
@@ -51,14 +51,18 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 # messageout = File.open('/tmp/message.out', 'w')
 
+## Create temporary keying
+
 ## Iterate through each recipient
 recipients.each do |recipient|
-  message = `echo #{recipient.pub_key} | gpg -e -a -r "#{recipient.email}" /tmp/decrypted`
-  # messageout.puts message
-  `cat /tmp/decrypted.asc | mail -s "ENCRYPTED" #{recipient.email}`
+ `gpg --no-default-keyring --keyring temporary.gpg --fingerprint`
+ `gpg --no-default-keyring --keyring temporary.gpg --import #{recipient.pub_key}`
+ message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
+ `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
 ## remove the decrypted message
-`rm -f /tmp/decrypted`
-`rm -f /tmp/decrypted.asc`
+#`rm -f /tmp/decrypted`
+#`rm -f /tmp/decrypted.asc`
 
+`rm ~/.gnupg/temporary.gpg`
