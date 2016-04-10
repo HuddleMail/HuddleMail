@@ -52,7 +52,8 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
  messageout = File.open('/tmp/message.out', 'w')
 
 ## move out current public key ring to make way for recipient keys
-`mv ~./gnupg/pubring.gpg .`
+`rm -f ~/.gnupg/pubring.gpg~`
+`mv ~/.gnupg/pubring.gpg .`
 
 ## Iterate through each recipient
 recipients.each do |recipient|
