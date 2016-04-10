@@ -55,12 +55,14 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 `rm -f ~/.gnupg/pubring.gpg~`
 `mv ~/.gnupg/pubring.gpg .`
 
+recipkeys = File.open('/tmp/recipkeys.out', 'w')
+
 ## Iterate through each recipient
 recipients.each do |recipient|
 
   ## import the recipients key
-  `echo #{recipient.pub_key} | gpg  --import`
-
+  key = `echo #{recipient.pub_key} | gpg  --import`
+  recipkeys.puts key
   ## encrypt message with recipients key
   message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
   messageout.puts message
