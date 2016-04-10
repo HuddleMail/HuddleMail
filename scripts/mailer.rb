@@ -23,31 +23,31 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
- mailout = File.open('/tmp/incoming.out', 'w')
- mailout.puts incoming
+mailout = File.open('/tmp/incoming.out', 'w')
+mailout.puts incoming
 
 ## Pull out the username from the To: field
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(incoming)
 result = tmp[1]
- dgnameout = File.open('/tmp/dgname.out', 'w')
- dgnameout.puts result
+dgnameout = File.open('/tmp/dgname.out', 'w')
+dgnameout.puts result
 
 ## Decrypt the received message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
- decryptedout = File.open('/tmp/decrypted', 'w')
- decryptedout.puts decrypted
+decryptedout = File.open('/tmp/decrypted', 'w')
+decryptedout.puts decrypted
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
 dist_group = dg[0]
- dgqueryout = File.open('/tmp/dgquery.out', 'w')
- dgqueryout.puts dist_group
+dgqueryout = File.open('/tmp/dgquery.out', 'w')
+dgqueryout.puts dist_group
 
 ## Query all the recipients in the found dist_group
 recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE dist_group_id = '#{dist_group.id}'"
- recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
- recipientqueryout.puts recipients
+recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
+recipientqueryout.puts recipients
 
 messageout = File.open('/tmp/message.out', 'w')
 
@@ -65,7 +65,7 @@ recipients.each do |recipient|
   key = `gpg  --import /tmp/recipkeys.out`
   recipkeys.puts key
   ## encrypt message with recipients key
-  message = `echo #{decrypted} | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" `
+  message = `gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e  "#{decrypted}"`
   messageout.puts message
 
   ## mail out the encrypted message
