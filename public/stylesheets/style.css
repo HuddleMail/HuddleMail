@@ -63,6 +63,34 @@ p {
   font-size: 18px;
   transition: background-color 300ms;
 }
+
+.greenbutton {
+  display: inline-block;
+  border: none;
+  background-color: #00e600;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
+  transition: background-color 300ms;
+}
+
+.redbutton {
+  display: inline-block;
+  border: none;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
+  transition: background-color 300ms;
+}
 .button:hover {
   background-color: #be7e18;
 }
