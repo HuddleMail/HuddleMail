@@ -1,27 +1,27 @@
 class DistGroupsController < ApplicationController
-  before_action :set_dist_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_dist_group, only: [:show, :destroy]
   before_action :authenticate_user!
   require 'openpgp'
-
-  #before_action :set_dist_group, only: [:show, :edit, :update, :destroy]
 
   # GET /dist_groups
   # GET /dist_groups.json
   def index
-    @dist_groups = DistGroup.all
-		@current_id = current_user.id
-    @user_groups = DistGroup.where(:user_id => @current_id)
+    if user_signed_in?
+      @dist_groups = DistGroup.all
+      @current_id = current_user.id
+      @user_groups = DistGroup.where(:user_id => @current_id)
+    end
   end
 
-	#GET /dist_groups/user_index
+	# GET /dist_groups/user_index
 	def all
-    @dist_groups = DistGroup.all
-		@current_id = current_user.id
-    @user_groups = DistGroup.where(:user_id => @current_id)
+    if user_signed_in?
+      @dist_groups = DistGroup.all
+		  @current_id = current_user.id
+      @user_groups = DistGroup.where(:user_id => @current_id)
+    end
 	end
 
-  # GET /dist_groups/1
-  # GET /dist_groups/1.json
   def show
     @dname = @dist_group.dist_name    
     @dpubkey = get_pubkey
@@ -36,11 +36,11 @@ class DistGroupsController < ApplicationController
   # POST /dist_groups.json
   def create
     @dist_group = DistGroup.new(dist_group_params)
-	@dname = @dist_group.dist_name
+	  @dname = @dist_group.dist_name
 
     respond_to do |format|
       if @dist_group.save
-	make_keypair	
+	      make_keypair
 	
         format.html { redirect_to @dist_group, notice: 'dist group was successfully created.' }
         format.json { render :@dist_group, status: :created, location: @dist_group }
@@ -51,23 +51,10 @@ class DistGroupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /dist_groups/1
-  # PATCH/PUT /dist_groups/1.json
-  def update
-    respond_to do |format|
-      if @dist_group.update(dist_group_params)
-        format.html { redirect_to @dist_group, notice: 'dist group was successfully updated. #{@dpubkey}' }
-        format.json { render :show, status: :ok, location: @dist_group }
-      else
-        format.html { render :edit }
-        format.json { render json: @dist_group.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /dist_groups/1
   # DELETE /dist_groups/1.json
   def destroy
+    @dist_group = DistGroup.find(params[:id])
     @dist_group.destroy
     respond_to do |format|
       format.html { redirect_to dist_groups_url, notice: 'dist group was successfully destroyed.' }
@@ -78,7 +65,7 @@ class DistGroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dist_group
-      @dist_group = DistGroup.find_by(params[:id])
+      @dist_group = DistGroup.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
