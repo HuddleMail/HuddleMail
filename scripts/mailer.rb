@@ -71,8 +71,4 @@ recipients.each do |recipient|
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
-# ## remove the temporary keyring
-# `rm -f ~/.gnupg/pubring*`
-#
-# ## move the original keyring back
-# `mv pubring.gpg ~/.gnupg/`
+ngs
