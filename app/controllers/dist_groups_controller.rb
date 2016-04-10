@@ -3,7 +3,7 @@ class DistGroupsController < ApplicationController
   before_action :authenticate_user!
   require 'openpgp'
 
-  #before_action :set_dist_group, only: [:show, :edit, :update, :destroy] 
+  #before_action :set_dist_group, only: [:show, :edit, :update, :destroy]
 
   # GET /dist_groups
   # GET /dist_groups.json
@@ -82,7 +82,7 @@ class DistGroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dist_group
-      @dist_group = DistGroup.find(params[:id])
+      @dist_group = DistGroup.find_by(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
