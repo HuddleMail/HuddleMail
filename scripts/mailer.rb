@@ -55,15 +55,13 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 ## Iterate through each recipient
 recipients.each do |recipient|
- `gpg --no-default-keyring --keyring temporary.gpg --fingerprint`
- `gpg --no-default-keyring --keyring temporary.gpg --import #{recipient.pub_key}`
- message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
- messageout.puts message
- `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
+  `mv ~./gnupg/pubring.gpg .`
+  `gpg  --import #{recipient.pub_key}`
+  message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
+  messageout.puts message
+  `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
 ## remove the decrypted message
-#`rm -f /tmp/decrypted`
-#`rm -f /tmp/decrypted.asc`
-
-`rm ~/.gnupg/temporary.gpg`
+`rm -f ~/.gnupg/pubring.gpg`
+`mv pubring.gpg ~/.gnupg/pubring.gpg`
