@@ -1,19 +1,25 @@
 <h1>New Distribution Group</h1>
 
-<%= render 'form' %>
+<%= form_for(@dist_group) do |f| %>
+    <% if @dist_group.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@dist_group.errors.count, 'error') %> prohibited this dist_group from being saved:</h2>
 
-  <% if @dist_group.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@dist_group.errors.count, "error") %> prohibited
-        this group from being saved:
-      </h2>
-      <ul>
-        <% @dist_group.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+          <ul>
+            <% @dist_group.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label 'Enter Distribution Group Name: ' %><br>
+      <%= f.text_field :dist_name %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
     </div>
-  <% end %>
 
-<%= link_to 'Back', dist_groups_path %>
+    <%= f.submit 'Create Distribution Group', class: 'button' %>
+<% end %>
+
+<%= button_to 'Back', dist_groups_all_path, class: 'button',:method => :get%>

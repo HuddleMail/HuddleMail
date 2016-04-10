@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing Distribution Groups</h1>
+<h1>Your Distribution Groups</h1>
 <table>
   <thead>
     <tr>
-      <th>Distribution Name</th>
+      <th>Distribution Group Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,9 +11,9 @@
   <tbody>
     <% @dist_groups.each do |dist_group| %>
       <tr>
-        <td><%= link_to dist_group.dist_name, dist_group %></td>
-        <td><%= link_to 'Show', dist_group %></td>
-        <td><%= link_to 'Destroy', dist_group, method: :delete %></td>
+        <td><h2><%= link_to dist_group.dist_name, dist_group %></h2></td>
+        <td><%= button_to 'Show', dist_group, class: 'greenbutton', :method => :get %></td>
+        <td><%= button_to 'Destroy', dist_group, class: 'redbutton', method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

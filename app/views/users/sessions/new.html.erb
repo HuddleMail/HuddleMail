@@ -9,6 +9,7 @@
 
 <body>
     <div class="logo"></div>
+    <p id="notice"><%= notice %></p>
     <h2>Log in to HuddleMail</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -22,35 +23,8 @@
           <%= f.password_field :password, autocomplete: "off" %>
         </div>
 
-
-        <% if devise_mapping.rememberable? -%>
-            <div>
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me, :inline_label => true %>
-            </div>
-        <% end -%>
-
-
-
-
-
-        <div class="buttonrow">
-          <li><%= f.submit "Log in", class: 'button' %></li>
-
-          <li>
-            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= button_to "Forgot your password?", new_password_path(resource_name), class: 'button',:method => :get %><br />
-            <% end -%>
-          </li>
-
-          <li>
-            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-              <%= button_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'button',:method => :get %><br />
-            <% end -%>
-          </li>
-        </div>
+        <%= f.submit "Log in", class: 'button' %>
     <% end %>
-
 
 </body>
 

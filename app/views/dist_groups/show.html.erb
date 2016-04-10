@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <h1>Distribution name: <%= @dist_group.dist_name %></h1>
 </p>
   <p>
 <% if @dpubkey.blank? %>
   <strong>Public Key:</strong><br>
-  <p><font color="red">The public key for <font color="black"><%= @dist_group.dist_name %></font> is not found. Delete this group and make a new one.</font></p>
+  <p><span style="color: red; ">The public key for <span style="color: black; "><%= @dist_group.dist_name %></span> is not found. Delete this group and make a new one.</span></p>
   <% else %>
   <h2>Public Key:</h2><br>
   <%= simple_format(@dpubkey) %>
@@ -44,4 +43,4 @@
 	<p>Add some people, so you can send to them.</p>
 <% end %>
 
-<%= link_to 'Back', dist_groups_path %>
+<%= button_to 'Back', dist_groups_path, class: 'button',:method => :get %>
