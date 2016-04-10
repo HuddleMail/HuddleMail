@@ -42,7 +42,7 @@ class DistGroupsController < ApplicationController
       if @dist_group.save
 	      make_keypair
 	
-        format.html { redirect_to @dist_group, notice: 'dist group was successfully created.' }
+        format.html { redirect_to @dist_group, notice: 'Distribution Group was successfully created.' }
         format.json { render :@dist_group, status: :created, location: @dist_group }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class DistGroupsController < ApplicationController
     @dist_group = DistGroup.find(params[:id])
     @dist_group.destroy
     respond_to do |format|
-      format.html { redirect_to dist_groups_url, notice: 'dist group was successfully destroyed.' }
+      format.html { redirect_to dist_groups_url, notice: 'Distribution Group was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -78,9 +78,9 @@ class DistGroupsController < ApplicationController
 	  gpg = OpenPGP::Engine::GnuPG.new(:homedir => '~/.gnupg')
 	  key_id = gpg.gen_key({
 		  :key_type      => 'RSA',
-		  :key_length    => 4096,
+		  :key_length    => 1024,
 		  :subkey_type   => 'RSA',
-		  :subkey_length => 4096,
+		  :subkey_length => 1024,
 		  :name          => @dname,
 		  :comment       => nil,
 		  #:email         => '',
