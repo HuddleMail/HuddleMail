@@ -53,7 +53,7 @@ messageout = File.open('/tmp/message.out', 'w')
 
 ## Iterate through each recipient
 recipients.each do |recipient|
-  message = `#{recipient.pub_key} | gpg -e -a -r #{recipient.email}`
+  message = `echo #{recipient.pub_key} | gpg -e -a -r #{recipient.email}`
   messageout.puts message
   `echo "#{message}" | mail -s "ENCRYPTED" #{recipient.email}`
 end
