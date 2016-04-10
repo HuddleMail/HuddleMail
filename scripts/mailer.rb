@@ -59,7 +59,7 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 recipients.each do |recipient|
 
   ## import the recipients key
-  `gpg  --import #{recipient.pub_key}`
+  `echo #{recipient.pub_key} | gpg  --import`
 
   ## encrypt message with recipients key
   message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
