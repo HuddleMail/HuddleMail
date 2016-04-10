@@ -71,4 +71,3 @@ recipients.each do |recipient|
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
-ngs
