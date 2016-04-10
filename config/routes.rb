@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :recipients
   end
 
-  get "/pages/:page" => "pages#show"
+  get "/pages/:page" => "pages#index"
   get 'pages/index'
   get 'pages/register'
   get 'pages/login'
