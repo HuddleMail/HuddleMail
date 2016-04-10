@@ -23,23 +23,20 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
-mailout = File.open('/tmp/incoming.out', 'w')
-mailout.puts incoming
+# mailout = File.open('/tmp/incoming.out', 'w')
+# mailout.puts incoming
 
 # ## Decrypt the Incoming Group Message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-decryptedout = File.open('/tmp/decrypted.out', 'w')
-decryptedout.puts decrypted
+# decryptedout = File.open('/tmp/decrypted.out', 'w')
+# decryptedout.puts decrypted
 
 ## Pull out the local part
-tmp = Array.new(4)
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
-tmp = regex.match(decrypted)
+tmp = regex.match(incoming)
 result = tmp[1]
-dgnameout = File.open('/tmp/dgname.out', 'w')
-dgnameout.puts result
-
-
+# dgnameout = File.open('/tmp/dgname.out', 'w')
+# dgnameout.puts result
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
