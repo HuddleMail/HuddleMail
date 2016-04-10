@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Listing Distribution Groups</h1>
-
 <table>
   <thead>
     <tr>
@@ -15,7 +13,7 @@
       <tr>
         <td><%= link_to dist_group.dist_name, dist_group %></td>
         <td><%= link_to 'Show', dist_group %></td>
-        <td><%= link_to 'Destroy', dist_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', dist_group, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +21,4 @@
 
 <br>
 
-<%= link_to 'New Distribution group', new_dist_group_path %>
+<%= button_to 'New Distribution group', new_dist_group_path, class: 'button',:method => :get %>
