@@ -35,7 +35,7 @@ result = tmp[1]
 
 ## Decrypt the received message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-decryptedout = File.open('decrypted.out', 'w')
+decryptedout = File.open('/tmp/decrypted', 'w')
 decryptedout.puts decrypted
 
 ## Query for the distgroup where dist_name == emailLocalPart
@@ -53,11 +53,12 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 ## Iterate through each recipient
 recipients.each do |recipient|
-  message = `echo #{recipient.pub_key} | gpg -e -a -r "#{recipient.email}" decrypted.out`
+  message = `echo #{recipient.pub_key} | gpg -e -a -r "#{recipient.email}" /tmp/decrypted`
   # messageout.puts message
-  `echo "#{message}" | mail -s "ENCRYPTED" #{recipient.email}`
+  `cat /tmp/decrypted.asc | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
 ## remove the decrypted message
-`rm -f decrypted.out`
+`rm -f /tmp/decrypted`
+`rm -f /tmp/decrypted.asc`
 
