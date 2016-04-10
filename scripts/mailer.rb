@@ -49,7 +49,7 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
 recipientqueryout.puts recipients
 
-messageout = File.open('tmp/message.out', 'w')
+messageout = File.open('/tmp/message.out', 'w')
 
 ## Iterate through each recipient
 recipients.each do |recipient|
