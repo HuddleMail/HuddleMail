@@ -61,7 +61,36 @@ eVJqRkfifWsOpN8hrtvKFaz239ANiShkLEE+hWjABmqYluQ9kAvJ4WBOzsgdYNyW
 =ofqE
 -----END PGP PUBLIC KEY BLOCK-----
 ')
-# dg.recipients.create(email: 'recipient2@test.com', pub_key: 'sfsfsefrgregegrge')
+ dg.recipients.create(email: 'sannvoun@gmail.com', pub_key: '-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1
+
+mQENBFcKgzkBCAC+3a3yS2X1eKcEHs9+mikZSM57unvT/+seFL364/IMq1gZ2COu
+OVvHy9+DBqPA2A9G9Lxoex0vjVmCwBRwVP60oSsz+JdSYjvc/SelMltRozitV/Ma
+7Ki5fBOrp8gaJy0MtAItUNsruMBBd9SdujjPUoDLUUJ3L4+jkHwykYze5KHDnuzP
+zB5eHReh4OAHBb8wRzFaTt9Pv4xj4I3R7dNO+zUNDPSgIKke9iLMDSt4u001zrxj
+tKZMzz+OKMh9KRbdwkjvQ9MWgoriUx1Z4jn66f6EkEa1D6MRKGrgad4k0kyzUnNC
+o5auQ+3mkDaCvF5o2UapurHxew846Js3QusvABEBAAG0G1Nhbm4gViA8c2FubnZv
+dW5AZ21haWwuY29tPokBOAQTAQIAIgUCVwqDOQIbAwYLCQgHAwIGFQgCCQoLBBYC
+AwECHgECF4AACgkQvcSv6ghcYvWPkggAswnsTEs4bNyIa1wN1eMcm98EVKTm/wg8
+qPstRHD5okWz6UVeSet47PhAbY5HOG55XYi7aJIcLumTEkaT7wYwT2rdqflk6GI+
+Iuy9iJgCXfJPngG2MQ374YuUGXwGGutpFetllFCpShYCcU/3OC1gZNoR+DlznTrr
+GMN9gDrr7uJxqwKC5f9E6E0VMAlyH4713EdP3UzttX7+Q3ED6/73DD5rh+H3GMY+
+xgAM2qst91ISYj+/KZ5+AtzWbAMlbypazMJVFRWBbi7hWYIQ5G82iJXuS9/HkGQI
+jRGXk5Qy/RmyN0RA1zCIROEeKIbcKyj+/dlDFHcfR7lX0Yb0S19z97kBDQRXCoM5
+AQgA53lwR2LQ9b7RGr9fA2SQsdte4mXl2SRj/685Cm9BDXIZtCdzAMNTcT/LdPif
+WtupMiftcSueSmy3oK87z0pAGBFDn0ZwMjdX89pR1+dNz7Hg7qUF5Kht7Sep9EdG
+VYuKC6vxJxP14r8gM5Twdb7fvbJaYWhZcQx3KqpY+6QEylSJc2Wqeg4nc5IE5509
+UxaJg2zvBzA4WUv88t8mv9/fSX+uY6tEuJ1ASAKwOzJAkGsjuOm9YBLzqWtMG5al
+jnMojLKU+VqRUvU1KGN30zA9ED6lrBVU+Clu4J7Q1T9NO34CLK/7hPyJCBgwQ64E
+HIrNYKK3zWQYjJUFBeQJDzfRywARAQABiQEfBBgBAgAJBQJXCoM5AhsMAAoJEL3E
+r+oIXGL1jcoH/2aGrXb70CNNysUue2Xkl5CbanLDxTauYm50FaTugPNWy8FPSaWq
+I4vZtygWkvS80C0c198KyGZx8IeoEp1BvfAY5qly6C/t90oIp0hCxPJlKQKjWYIF
+zU8yaSVU2MRvHDcN+D+c2FRE4YRIfRLJczfF+OHsDL1ua9Qp0sVaMpK1Ag5RpjIq
+t8OplZR7YinOQWNDXKnxd4iP8pyXPDaAq7R1Bdnc/Fh8Qhjff4p2D97/HRzfLoJZ
+AZDyUZPwSaDvpJ4SnbXK0SDT45AsqJ5nJeb+NlPTDC/WDHrdYcIrr6IHAokCAUt6
+siTziN9JTtvun/xLA1//7gCvIVPski8Aw4s=
+=vP1h
+-----END PGP PUBLIC KEY BLOCK-----')
 # dg.recipients.create(email: 'recipient3@test.com', pub_key: 'htrhyhtrhhrthtrht')
 # dg.recipients.create(email: 'recipient4@test.com', pub_key: '34r3243gegdgdfggg')
 # dg.recipients.create(email: 'recipient5@test.com', pub_key: 'etewtewrtewtrewte')
