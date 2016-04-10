@@ -52,7 +52,7 @@ recipients.each do |recipient|
   recipEmail = recipient.email
 
  ## import the recipients key
-  `echo "#{recipkey}" | gpg  --import`
+  `echo #{recipKey} | gpg  --import`
   ## encrypt message with recipients key
   message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipEmail}" -e`
   # messageout.puts message
