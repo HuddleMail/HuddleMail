@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions" }
-  root 'pages#show', page: 'index'
+  root 'pages#index'
 
   devise_scope :user do
     get "/users/registrations/new" => "users/registrations"
@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "/users/sessions/new" => "users/sessions"
   end
-
 
   get 'dist_groups/all'
 
