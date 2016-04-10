@@ -5,7 +5,7 @@ require 'sqlite3'
 
 ActiveRecord::Base.establish_connection(
     :adapter => "sqlite3",
-    :database => "/home/neal/RubymineProjects/HuddleMail/HuddleMail_development"
+    :database => "../HuddleMail_development"
 )
 
 class DistGroup < ActiveRecord::Base
