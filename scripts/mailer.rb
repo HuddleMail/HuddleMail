@@ -51,17 +51,25 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
  messageout = File.open('/tmp/message.out', 'w')
 
-## Create temporary keying
+## move out current public key ring to make way for recipient keys
+`mv ~./gnupg/pubring.gpg .`
 
 ## Iterate through each recipient
 recipients.each do |recipient|
-  `mv ~./gnupg/pubring.gpg .`
+
+  ## import the recipients key
   `gpg  --import #{recipient.pub_key}`
+
+  ## encrypt message with recipients key
   message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
   messageout.puts message
+
+  ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
-## remove the decrypted message
-`rm -f ~/.gnupg/pubring.gpg`
+## remove the temporary keyring
+`rm -f ~/.gnupg/pubring*`
+
+## move the original keyring back
 `mv pubring.gpg ~/.gnupg/`
