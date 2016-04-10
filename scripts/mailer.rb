@@ -49,7 +49,7 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 # recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
 # recipientqueryout.puts recipients
 
-# messageout = File.open('/tmp/message.out', 'w')
+ messageout = File.open('/tmp/message.out', 'w')
 
 ## Create temporary keying
 
@@ -58,6 +58,7 @@ recipients.each do |recipient|
  `gpg --no-default-keyring --keyring temporary.gpg --fingerprint`
  `gpg --no-default-keyring --keyring temporary.gpg --import #{recipient.pub_key}`
  message = `echo #{decrypted} | gpg -e -a -r "#{recipient.email}" `
+ messageout.puts message
  `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 end
 
