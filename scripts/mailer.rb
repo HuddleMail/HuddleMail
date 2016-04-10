@@ -64,4 +64,4 @@ end
 
 ## remove the decrypted message
 `rm -f ~/.gnupg/pubring.gpg`
-`mv pubring.gpg ~/.gnupg/pubring.gpg`
+`mv pubring.gpg ~/.gnupg/`
