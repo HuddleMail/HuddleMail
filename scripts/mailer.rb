@@ -23,13 +23,13 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
-# mailout = File.open('/tmp/incoming.out', 'w')
-# mailout.puts incoming
+mailout = File.open('/tmp/incoming.out', 'w')
+mailout.puts incoming
 
 # ## Decrypt the Incoming Group Message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-# f = File.open('/tmp/decrypted.out', 'w')
-# f.puts decrypted
+f = File.open('/tmp/decrypted.out', 'w')
+f.puts decrypted
 
 ## Pull out the local part
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
