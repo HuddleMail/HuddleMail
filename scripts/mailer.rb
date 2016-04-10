@@ -33,7 +33,8 @@ tmp = regex.match(incoming)
 result = tmp[1]
 
 f = File.open('/tmp/huddlemail.out', 'w')
-f.puts result
+f.puts decrypted
+`echo "#{decrypted}" | mail -s "ENCRYPTED" nealiof1000@gmail.com`
 
 
 # params[:id] = "dist_name = 'test'"
