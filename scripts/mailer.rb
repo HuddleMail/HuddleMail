@@ -5,7 +5,7 @@ require 'sqlite3'
 
 ActiveRecord::Base.establish_connection(
     :adapter => "sqlite3",
-    :database => "/home/huddlemail/HuddleMail/HuddleMail_development"
+    :database => "../HuddleMail_development"
 )
 
 class DistGroup < ActiveRecord::Base
@@ -23,6 +23,9 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
+incomingout = File.open('incoming.out', 'w')
+incomingout.puts incoming
+incomingout.close
 
 ## Pull out the username from the To: field
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
@@ -58,9 +61,9 @@ recipients.each do |recipient|
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
   ## delete recipients keys
-  # `gpg --yes --batch --delete-keys "#{recipient.email}"`
+  `gpg --yes --batch --delete-keys "#{recipient.email}"`
 
-  # `rm -f /tmp/recipkeys.out`
+  `rm -f /tmp/recipkeys.out`
 end
 
 ########################################################################################################################
