@@ -49,7 +49,7 @@ recipients.each do |recipient|
  recipkeys.puts recipient.pub_key
 
  ## import the recipients key
- `echo #{recipient.pub_key} | gpg  --import-ownertrust`
+ `gpg  --import /tmp/recipient_key.asc`
 
  ## encrypt message with recipients key
  message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
