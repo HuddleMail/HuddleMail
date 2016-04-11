@@ -53,6 +53,8 @@ recipients.each do |recipient|
 
  ## encrypt message with recipients key
  message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
+ messageout = File.open('/tmp/message.out', 'w')
+ messageout.puts message
 
   ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
