@@ -41,8 +41,6 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 ########################################################################################################################
 
-# messageout = File.open('/tmp/message.out', 'w')
-
 ## Iterate through each recipient
 recipients.each do |recipient|
  recipkeys = File.open('/tmp/recipient_key.asc', 'w')
