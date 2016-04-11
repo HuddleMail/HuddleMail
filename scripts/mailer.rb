@@ -27,6 +27,7 @@ incomingout = File.open('/tmp/incoming.out', 'w')
 incomingout.puts incoming
 incomingout.close
 
+tmp = Array.new
 ## Pull out the username from the To: field
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(incoming)
