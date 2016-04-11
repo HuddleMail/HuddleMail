@@ -9,7 +9,7 @@
   <p><font color="red">The public key for <font color="black"><%= @dist_group.dist_name %></font> is not found in the keyring. Delete this group and make a new one.</font></p>
   <% else %>
   <h2>Public Key:</h2><br>
-  <%= @dpubkey %>
+  <%= simple_format @dpubkey %>
   </p>
 <% end %>
 

@@ -44,7 +44,8 @@ class DistGroupsController < ApplicationController
 
     respond_to do |format|
       if @dist_group.save
-	make_keypair	
+	make_keypair
+	@dist_group.update(:pub_key => get_pubkey)
 	
         format.html { redirect_to @dist_group, notice: 'dist group was successfully created.' }
         format.json { render :@dist_group, status: :created, location: @dist_group }
