@@ -25,6 +25,7 @@ end
 incoming = $stdin.read
 incomingout = File.open('/tmp/incoming.out', 'w+')
 incomingout.puts incoming
+incomingout.close
 
 
 ## Pull out the username from the To: field
