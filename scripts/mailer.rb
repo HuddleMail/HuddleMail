@@ -56,10 +56,10 @@ recipients.each do |recipient|
  ## mail out the encrypted message
  `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
- ## delete recipients keys
+ ## delete recipients key
  # `gpg --yes --batch --delete-keys "#{recipient.email}"`
 
- `rm -f /tmp/recipient_key.asc`
+ # `rm -f /tmp/recipient_key.asc`
 end
 
 ########################################################################################################################
