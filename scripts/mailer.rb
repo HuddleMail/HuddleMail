@@ -28,7 +28,7 @@ incomingout.puts incoming
 incomingout.close
 
 ## Pull out the username from the To: field
-regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
+regex = /To: "([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(incoming)
 result = tmp[1]
 
