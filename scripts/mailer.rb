@@ -61,7 +61,7 @@ recipients.each do |recipient|
  # message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
 
   ## mail out the encrypted message
-  `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
+  `echo #{incoming} | mail -s "ENCRYPTED" #{recipient.email}`
 
 ########################################################################################################################
 ############# END DANGER ZONE #######################
