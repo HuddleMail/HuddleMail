@@ -41,8 +41,6 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 ########################################################################################################################
 
-# messageout = File.open('/tmp/message.out', 'w')
-
 ## Iterate through each recipient
 recipients.each do |recipient|
  recipkeys = File.open('/tmp/recipient_key.asc', 'w')
@@ -55,13 +53,13 @@ recipients.each do |recipient|
  ## encrypt message with recipients key
  message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
 
-  ## mail out the encrypted message
-  `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
+ ## mail out the encrypted message
+ `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
-  ## delete recipients keys
-  # `gpg --yes --batch --delete-keys "#{recipient.email}"`
+ ## delete recipients keys
+ # `gpg --yes --batch --delete-keys "#{recipient.email}"`
 
-  # `rm -f /tmp/recipkeys.out`
+ `rm -f /tmp/recipient_key.asc`
 end
 
 ########################################################################################################################
