@@ -39,30 +39,30 @@ dist_group = dg[0]
 ## Query all the recipients in the found dist_group
 recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE dist_group_id = '#{dist_group.id}'"
 
-########################################################################################################################
 
 ## Iterate through each recipient
 recipients.each do |recipient|
- # recipkeys = File.open('/tmp/recipient_key.asc', 'w+')
- # recipkeys.puts recipient.pub_key
 
- # recipkeys.close
+############### BEGIN DANGER ZONE ###################
+########################################################################################################################
+
+ recipkeys = File.open('/tmp/recipient_key.asc', 'w+')
+ recipkeys.puts recipient.pub_key
+ recipkeys.close
 
  ## import the recipients key
-  # `gpg  --import /tmp/recipient_key.asc`
+ `gpg  --import /tmp/recipient_key.asc`
 
  ## encrypt message with recipients key
  message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
- messageout = File.open('/tmp/message.out', 'w')
- messageout.puts message
 
   ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
-  ## delete recipients keys
- # `gpg --yes --batch --delete-keys "#{recipient.email}"`
+########################################################################################################################
+############# END DANGER ZONE #######################
 
-  # `rm -f /tmp/recipkeys.out`
+  ## delete recipients keys
+  `gpg --yes --batch --delete-keys "#{recipient.email}"`
 end
 
-########################################################################################################################
