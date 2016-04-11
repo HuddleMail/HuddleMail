@@ -46,9 +46,13 @@ recipients.each do |recipient|
 ############### BEGIN DANGER ZONE ###################
 ########################################################################################################################
 
- recipkeys = File.open('/tmp/recipient_key.asc', 'w+')
- recipkeys.puts recipient.pub_key
- recipkeys.close
+ # recipkeys = File.open('/tmp/recipient_key.asc', 'w+')
+ # recipkeys.puts recipient.pub_key
+ # recipkeys.close
+
+ File.open('/tmp/recipient_key.asc', 'w+') do |f|
+   f.puts recipient.pub_key
+ end
 
  ## import the recipients key
  `gpg  --import /tmp/recipient_key.asc`
