@@ -47,6 +47,7 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 recipients.each do |recipient|
  recipkeys = File.open('recipient_key.asc', 'w')
  recipkeys.puts recipient.pub_key
+ recipkeys.close
 
  ## import the recipients key
  `gpg  --import recipient_key.asc`
