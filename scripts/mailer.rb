@@ -61,7 +61,7 @@ recipients.each do |recipient|
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
 
   ## delete recipients keys
-  `gpg --yes --batch --delete-keys "#{recipient.email}"`
+  # `gpg --yes --batch --delete-keys "#{recipient.email}"`
 
   # `rm -f /tmp/recipkeys.out`
 end
