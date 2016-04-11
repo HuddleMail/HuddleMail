@@ -45,14 +45,16 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 ## Iterate through each recipient
 recipients.each do |recipient|
- # recipkeys = File.open('/tmp/recipkeys.out', 'w')
- # recipkeys.puts recipient.pub_key
+ recipkeys = File.open('/tmp/recipient_key.asc', 'w')
+ recipkeys.puts recipient.pub_key
 
   recipKey = recipient.pub_key
   recipEmail = recipient.email
 
+ `gpg --import /tmp/recipient_key.asc`
+
  ## import the recipients key
-  `echo #{recipKey} | gpg  --import`
+  # `echo #{recipKey} | gpg  --import`
   ## encrypt message with recipients key
   message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipEmail}" -e`
   # messageout.puts message
