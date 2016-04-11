@@ -25,11 +25,10 @@ end
 incoming = $stdin.read
 incomingout = File.open('/tmp/incoming.out', 'w')
 incomingout.puts incoming
-incomingout.close
 
 tmp = Array.new
 ## Pull out the username from the To: field
-regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
+regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@huddlemail.xyz/
 tmp = regex.match(incoming)
 result = tmp[1]
 
@@ -37,7 +36,6 @@ result = tmp[1]
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
 decryptedout = File.open('/tmp/decrypted.out', 'w')
 decryptedout.puts decrypted
-decryptedout.close
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
@@ -52,6 +50,9 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 recipients.each do |recipient|
  recipkeys = File.open('/tmp/recipient_key.asc', 'w')
  recipkeys.puts recipient.pub_key
+
+ incomingout.close
+ decryptedout.close
  recipkeys.close
 
  ## import the recipients key
