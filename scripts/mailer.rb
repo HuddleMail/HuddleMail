@@ -23,6 +23,9 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
+incominout = File.open('/tmp/incoming.out', 'w+')
+incomingout.puts incoming
+
 
 ## Pull out the username from the To: field
 regex = /To: "*([\w.!#$%&'*+-\/=?^`{|}~]+)@/
@@ -61,7 +64,7 @@ recipients.each do |recipient|
  # message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
 
   ## mail out the encrypted message
-  `echo #{incoming} | mail -s "ENCRYPTED" #{recipient.email}`
+  `cat /tmp/incoming.out | mail -s "ENCRYPTED" #{recipient.email}`
 
 ########################################################################################################################
 ############# END DANGER ZONE #######################
