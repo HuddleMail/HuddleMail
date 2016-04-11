@@ -23,7 +23,7 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
-incominout = File.open('/tmp/incoming.out', 'w+')
+incomingout = File.open('/tmp/incoming.out', 'w+')
 incomingout.puts incoming
 
 
