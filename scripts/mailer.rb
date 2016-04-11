@@ -23,6 +23,9 @@ end
 
 ## Read in Encrypted Message from STDIN
 incoming = $stdin.read
+incomingout = File.open('/tmp/incoming.out', 'w')
+incomingout.puts incoming
+incomingout.close
 
 ## Pull out the username from the To: field
 regex = /To: ([\w.!#$%&'*+-\/=?^`{|}~]+)@/
