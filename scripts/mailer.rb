@@ -34,6 +34,9 @@ result = tmp[1]
 
 ## Decrypt the received message
 decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+decryptedout = File.open('/tmp/decrypted.out', 'w')
+decryptedout.puts decrypted
+decryptedout.close
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
