@@ -30,7 +30,7 @@ tmp = regex.match(incoming)
 result = tmp[1]
 
 ## Decrypt the received message
-decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+# decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
@@ -55,10 +55,10 @@ recipients.each do |recipient|
  end
 
  ## import the recipients key
- `gpg  --import /tmp/recipient_key.asc`
+ # `gpg  --import /tmp/recipient_key.asc`
 
  ## encrypt message with recipients key
- message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
+ # message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
 
   ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
@@ -67,6 +67,6 @@ recipients.each do |recipient|
 ############# END DANGER ZONE #######################
 
   ## delete recipients keys
-  `gpg --yes --batch --delete-keys "#{recipient.email}"`
+  # `gpg --yes --batch --delete-keys "#{recipient.email}"`
 end
 
