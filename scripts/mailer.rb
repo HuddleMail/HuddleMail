@@ -47,7 +47,7 @@ recipients.each do |recipient|
  recipkeys = File.open('/tmp/recipient_key.asc', 'w')
  recipkeys.puts recipient.pub_key
 
- recipkeys.close
+ recipkeys.close!
 
  ## import the recipients key
  `gpg  --import /tmp/recipient_key.asc`
