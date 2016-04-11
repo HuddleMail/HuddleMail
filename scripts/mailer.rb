@@ -48,16 +48,14 @@ recipients.each do |recipient|
  recipkeys = File.open('/tmp/recipient_key.asc', 'w')
  recipkeys.puts recipient.pub_key
 
-  recipKey = recipient.pub_key
-  recipEmail = recipient.email
-
- `gpg --import /tmp/recipient_key.asc`
+ recipkey = recipient.pub_key
+ recipemail = recipient.email
 
  ## import the recipients key
-  # `echo #{recipKey} | gpg  --import`
-  ## encrypt message with recipients key
-  message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipEmail}" -e`
-  # messageout.puts message
+ `echo #{recipkey} | gpg  --import`
+
+ ## encrypt message with recipients key
+ message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipemail}" -e`
 
   ## mail out the encrypted message
   `echo #{message} | mail -s "ENCRYPTED" #{recipient.email}`
