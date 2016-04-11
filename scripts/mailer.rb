@@ -15,15 +15,14 @@ class Recipient < ActiveRecord::Base
 end
 
 ## Hardcoded string for testing
-incoming = "From: neal friedman <nealiof1000@gmail.com>
-Date: Fri, 8 Apr 2016 08:54:55 -0600
-Message-ID: <CA+GV4WqXHt7sHAGCXVwydcOyqkHjo-7DK3ht18tWtvJc5j36Vg@mail.gmail.com>
-Subject: this is a test
-To: test@huddlemail.xyz"
+# incoming = "From: neal friedman <nealiof1000@gmail.com>
+# Date: Fri, 8 Apr 2016 08:54:55 -0600
+# Message-ID: <CA+GV4WqXHt7sHAGCXVwydcOyqkHjo-7DK3ht18tWtvJc5j36Vg@mail.gmail.com>
+# Subject: this is a test
+# To: test@huddlemail.xyz"
 
 ## Read in Encrypted Message from STDIN
-# incoming = $stdin.read
-incomingout = File.open('/tmp/incoming.out', 'w')
+incoming = $stdin.read
 
 ## Pull out the username from the To: field
 regex = /To: "([\w.!#$%&'*+-\/=?^`{|}~]+)@/
