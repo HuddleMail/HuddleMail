@@ -8,6 +8,7 @@ ActiveRecord::Base.establish_connection(
     :database => "HuddleMail_development"
 )
 
+
 class DistGroup < ActiveRecord::Base
 end
 
