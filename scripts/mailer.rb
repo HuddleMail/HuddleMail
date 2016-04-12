@@ -35,6 +35,7 @@ result = tmp[1]
 
 ## Decrypt the received message
 # decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+decrypted = "this needs to get get the body of the message so it will work."
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
@@ -44,33 +45,26 @@ dist_group = dg[0]
 recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE dist_group_id = '#{dist_group.id}'"
 
 
-## Iterate through each recipient
+## Imports recipient.pub_key to public keyring and then encrypts the message
 recipients.each do |recipient|
+#puts recipient.email
+#puts recipient.pub_key
 
-############### BEGIN DANGER ZONE ###################
-########################################################################################################################
+recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
+recipientqueryout.puts recipient.pub_key
+recipientqueryout.close
 
- # recipkeys = File.open('/tmp/recipient_key.asc', 'w+')
- # recipkeys.puts recipient.pub_key
- # recipkeys.close
+puts `gpg --import /tmp/recipientquery.out`
+encryptedmessage = `echo #{decrypted} | gpg --always-trust -e -a -r "#{recipient.email}" `
+puts encryptedmessage
+#puts `gpg --delete-key #{recipient.email} `
 
- # File.open('/tmp/recipient_key.asc', 'w+') do |f|
- #   f.puts recipient.pub_key
- # end
-
- ## import the recipients key
- # `gpg  --import /tmp/recipient_key.asc`
-
- ## encrypt message with recipients key
- # message = `echo "#{decrypted}" | gpg -a --yes --batch --trust-model always -r "#{recipient.email}" -e`
 
   ## mail out the encrypted message
-  `cat /tmp/incoming.out | mail -s "ENCRYPTED" #{recipient.email}`
-
+  `cat #{encryptedmessage} | mail -s "ENCRYPTED" #{recipient.email}`
+end
 ########################################################################################################################
 ############# END DANGER ZONE #######################
 
   ## delete recipients keys
   # `gpg --yes --batch --delete-keys "#{recipient.email}"`
-end
-
