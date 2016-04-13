@@ -27,15 +27,17 @@ incomingout = File.open('/tmp/incoming.out', 'w+')
 incomingout.puts incoming
 incomingout.close
 
-
 ## Pull out the username from the To: field
 regex = /To: "*([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(incoming)
 result = tmp[1]
 
 ## Decrypt the received message
-# decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-decrypted = "this needs to get get the body of the message so it will work."
+ decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+#decrypted = "this needs to get get the body of the message so it will work."
+plaintext = File.open('/tmp/reencrypted.out', 'w')
+plaintext.puts decrypted
+plaintext.close
 
 ## Query for the distgroup where dist_name == emailLocalPart
 dg = DistGroup.find_by_sql "SELECT  dist_groups.* FROM dist_groups WHERE dist_name = '#{result}' LIMIT 1"
@@ -47,21 +49,25 @@ recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE di
 
 ## Imports recipient.pub_key to public keyring and then encrypts the message
 recipients.each do |recipient|
-#puts recipient.email
-#puts recipient.pub_key
+  #puts recipient.email
+  #puts recipient.pub_key
 
-recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
-recipientqueryout.puts recipient.pub_key
-recipientqueryout.close
+  recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
+  recipientqueryout.puts recipient.pub_key
+  recipientqueryout.close
 
-puts `gpg --import /tmp/recipientquery.out`
-encryptedmessage = `echo #{decrypted} | gpg --always-trust -e -a -r "#{recipient.email}" `
-puts encryptedmessage
-#puts `gpg --delete-key #{recipient.email} `
+  `gpg --import /tmp/recipientquery.out`
+  `gpg --always-trust --yes -e -a -r "#{recipient.email}" /tmp/reencrypted.out`
+#  encryptedmessage = `echo #{decrypted} | gpg --always-trust -e -a -r "#{recipient.email}" `
+#  reencrypt = File.open('/tmp/reencrypted.out', 'w')
+#  reencrypt.puts encryptedmessage
+#  reencrypt.close
+#  encryptedout.puts encryptedmessage
+#  puts `gpg --delete-key #{recipient.email} `
 
 
   ## mail out the encrypted message
-  `cat #{encryptedmessage} | mail -s "ENCRYPTED" #{recipient.email}`
+  `cat /tmp/reencrypted.out.asc | mail -s "ENCRYPTED" #{recipient.email}`
 end
 ########################################################################################################################
 ############# END DANGER ZONE #######################
