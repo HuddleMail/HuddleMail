@@ -4,11 +4,12 @@
 <body>
  <div class="logo"></div>
  <p id="notice"><%= notice %></p>
- <%= yield -%>
-  <h2>Welcome to HuddleMail, try our service out below</h2>
-  <%= button_to 'Register', users_registrations_new_path, class: 'button',:method => :get %>
-  <%= button_to 'Log In', users_sessions_new_path, class: 'button', :method => :get %>
-
+ <div align="center">
+ <h2>Welcome to HuddleMail, try our service out below</h2>
+  <div class="inline"><%= button_to 'Log In', users_sessions_new_path, class: 'button', :method => :get %></div>
+  <div class="inline"><%= button_to 'Register', users_registrations_new_path, class: 'button',:method => :get %></div>
+ </div>
+ <p>Relay your PGP Encrypted E-mail to a Group of People Now!</p>
 </body>
 
 </html>

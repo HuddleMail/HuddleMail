@@ -26,10 +26,14 @@
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
 
-      <div class="actions">
+
+
+    <div class="actions">
         <%= f.submit "Sign up", class: 'button' %>
       </div>
     <% end %>
+    <%= button_to 'Back', pages_index_path, class: 'button', :method => :get %>
+
 </body>
 
 
