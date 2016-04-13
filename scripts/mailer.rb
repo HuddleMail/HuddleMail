@@ -14,14 +14,7 @@ end
 class Recipient < ActiveRecord::Base
 end
 
-## Hardcoded string for testing
-# incoming = "From: neal friedman <nealiof1000@gmail.com>
-# Date: Fri, 8 Apr 2016 08:54:55 -0600
-# Message-ID: <CA+GV4WqXHt7sHAGCXVwydcOyqkHjo-7DK3ht18tWtvJc5j36Vg@mail.gmail.com>
-# Subject: this is a test
-# To: test@huddlemail.xyz"
-
-## Read in Encrypted Message from STDIN
+## Read in Encrypted Message from STDIN and store in file
 incoming = $stdin.read
 incomingout = File.open('/tmp/incoming.out', 'w+')
 incomingout.puts incoming
@@ -32,10 +25,9 @@ regex = /To: "*([\w.!#$%&'*+-\/=?^`{|}~]+)@/
 tmp = regex.match(incoming)
 result = tmp[1]
 
-## Decrypt the received message
- decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
-#decrypted = "this needs to get get the body of the message so it will work."
-plaintext = File.open('/tmp/reencrypted.out', 'w')
+## Decrypt the received message and store in file
+decrypted = `echo "#{incoming}" | gpg -a --no-batch -d`
+plaintext = File.open('/tmp/decrypted.out', 'w')
 plaintext.puts decrypted
 plaintext.close
 
@@ -46,31 +38,28 @@ dist_group = dg[0]
 ## Query all the recipients in the found dist_group
 recipients = Recipient.find_by_sql "SELECT recipients.* FROM recipients WHERE dist_group_id = '#{dist_group.id}'"
 
-
 ## Imports recipient.pub_key to public keyring and then encrypts the message
 recipients.each do |recipient|
-  #puts recipient.email
-  #puts recipient.pub_key
 
-  recipientqueryout = File.open('/tmp/recipientquery.out', 'w')
-  recipientqueryout.puts recipient.pub_key
-  recipientqueryout.close
+  # store the recipient's public key in a file
+  recipientPubKey = File.open('/tmp/recipientpubkey.out', 'w')
+  recipientPubKey.puts recipient.pub_key
+  recipientPubKey.close
 
-  `gpg --import /tmp/recipientquery.out`
-  `gpg --always-trust --yes -e -a -r "#{recipient.email}" /tmp/reencrypted.out`
-#  encryptedmessage = `echo #{decrypted} | gpg --always-trust -e -a -r "#{recipient.email}" `
-#  reencrypt = File.open('/tmp/reencrypted.out', 'w')
-#  reencrypt.puts encryptedmessage
-#  reencrypt.close
-#  encryptedout.puts encryptedmessage
-#  puts `gpg --delete-key #{recipient.email} `
+  # import recipient's public key
+  `gpg --import /tmp/recipientpubkey.out`
 
+  # encrypt the message for the recipient and store in file
+  `gpg --always-trust --yes -e -a -r "#{recipient.email}" /tmp/decrypted.out`
+  
+  # delete the recipients public key from the keyring
+  `gpg --yes --batch --delete-keys "#{recipient.email}"`
 
-  ## mail out the encrypted message
-  `cat /tmp/reencrypted.out.asc | mail -s "ENCRYPTED" #{recipient.email}`
+  # mail out the encrypted message
+  `cat /tmp/decrypted.out.asc | mail -s "ENCRYPTED" #{recipient.email}`
 end
-########################################################################################################################
-############# END DANGER ZONE #######################
 
-  ## delete recipients keys
-  # `gpg --yes --batch --delete-keys "#{recipient.email}"`
+`rm -f /tmp/incoming.out`
+`rm -f /tmp/recipientpubkey.out`
+`rm -f /tmp/decrypted.out.asc`
+`rm -f /tmp/decrypted.out`
