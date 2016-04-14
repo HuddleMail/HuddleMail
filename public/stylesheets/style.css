@@ -19,8 +19,8 @@ body {
 }
 
 .logo {
-  width: 250px;
-  height: 70px;
+  width: 600px;
+  height: 200px;
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/134921/logo.svg) no-repeat;
   margin: 0 auto;
 }
