@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          #:confirmable, :lockable
 
-  has_many :dist_groups
+  has_many :dist_groups, dependent: :destroy
 end
