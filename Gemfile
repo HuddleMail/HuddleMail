@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 #Use openpgp to create keypair
 gem 'openpgp'
 
+#Use gpgme for deleting secrect keys
+gem 'gpgme'
+
 group :development do
    gem "thin"
 end

@@ -2,6 +2,7 @@ class DistGroupsController < ApplicationController
   before_action :set_dist_group, only: [:show, :destroy]
   before_action :authenticate_user!
   require 'openpgp'
+	require 'gpgme'
 
   # GET /dist_groups
   # GET /dist_groups.json
@@ -54,8 +55,11 @@ class DistGroupsController < ApplicationController
   # DELETE /dist_groups/1
   # DELETE /dist_groups/1.json
   def destroy
+		@dname = @dist_group.dist_name
+		delete_secret_key
     @dist_group = DistGroup.find(params[:id])
     @dist_group.destroy
+
     respond_to do |format|
       format.html { redirect_to dist_groups_url, notice: 'Distribution Group was successfully destroyed.' }
       format.json { head :no_content }
@@ -78,14 +82,22 @@ class DistGroupsController < ApplicationController
 	  gpg = OpenPGP::Engine::GnuPG.new(:homedir => '~/.gnupg')
 	  key_id = gpg.gen_key({
 		  :key_type      => 'RSA',
-		  :key_length    => 4096,
+		  :key_length    => 1024,
 		  :subkey_type   => 'RSA',
-		  :subkey_length => 4096,
+		  :subkey_length => 1024,
 		  :name          => @dname,
 		  :comment       => nil,
 		  #:email         => '',
 		  #:passphrase    => '',
 		})
+	end
+
+	# Fuction to delete secret key from keyring
+	def delete_secret_key
+		akey = GPGME::Key.find(:secret, @dname)
+		akey.each do |akey|
+		akey.delete!(allow_secret = true)
+		end
 	end
 	
 	# Function to get public key from keyring
