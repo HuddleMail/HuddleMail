@@ -82,9 +82,9 @@ class DistGroupsController < ApplicationController
 	  gpg = OpenPGP::Engine::GnuPG.new(:homedir => '~/.gnupg')
 	  key_id = gpg.gen_key({
 		  :key_type      => 'RSA',
-		  :key_length    => 1024,
+		  :key_length    => 4096,
 		  :subkey_type   => 'RSA',
-		  :subkey_length => 1024,
+		  :subkey_length => 4096,
 		  :name          => @dname,
 		  :comment       => nil,
 		  #:email         => '',

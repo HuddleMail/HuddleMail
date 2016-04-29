@@ -1,17 +1,14 @@
-<%= form_for(@recipient) do |f| %>
-  <% if @recipient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
-
-      <ul>
-      <% @recipient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for([@dist_group, @dist_group.recipients.build]) do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :public_key %><br>
+    <%= f.text_area :pub_key %>
+  </p>
+  <p>
+    <strong><%= f.submit "Add Recipient" %></strong>
+  </p>
 <% end %>
+

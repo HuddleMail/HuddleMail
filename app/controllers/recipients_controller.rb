@@ -5,6 +5,13 @@ class RecipientsController < ApplicationController
     redirect_to dist_group_path(@dist_group)
 	end
 
+  def destroy
+    @dist_group = DistGroup.find(params[:dist_group_id])
+    @recipient = @dist_group.recipients.find(params[:id])
+    @recipient.destroy
+    redirect_to dist_group_path(@dist_group)
+  end
+
 	private
 		def recipient_params
 			params.require(:recipient).permit(:email, :pub_key)
