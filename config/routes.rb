@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     get "/users/sessions/new" => "users/sessions"
   end
 
-  get 'dist_groups/all'
-
   resources :dist_groups do
     resources :recipients
   end
