@@ -1,8 +1,8 @@
 class DistGroupsController < ApplicationController
   before_action :set_dist_group, only: [:show, :destroy]
   before_action :authenticate_user!
-  # require 'openpgp'
-	# require 'gpgme'
+   require 'openpgp'
+	 require 'gpgme'
 
   # GET /dist_groups
   # GET /dist_groups.json
